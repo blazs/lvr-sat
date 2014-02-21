@@ -31,14 +31,22 @@ class And:
 
 def Not:
 	def __init__(self, formula):
-		
+		self.formula = formula
+	def value(self, assignment):
+		return not self.formula.value(assignment)
+	def str(self):
+		return "~", self.formula.str()
 
 # entry point 
 if __name__ == '__main__':
 	p = Var("p")
 	q = Var("q")
 	
+	notP = Not(p)
+	
 	assignment = { "p" : False, "q" : True }
+	
+	print notP.value(assignment)
 	
 	print And([p, q]).value(assignment)
 	print Or([p, q]).value(assignment)
