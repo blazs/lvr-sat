@@ -84,6 +84,7 @@ def parser(s):
 if __name__ == '__main__':
 	p = Var("p")
 	q = Var("q")
+	t = Var("t")
 	
 	notP = Not(Or([And([p, q]), And([Not(p), Not(q)]), Fls()]))
 	print notP.repr()
