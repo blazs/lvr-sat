@@ -4,7 +4,6 @@
 Assume values is a dictionary, mapping variables to their values, i.e., values["p"] = True. 
 values = { "p" :  True, ..., "q": False } 
 
-
 -- borjab, blazs, martinf
 """
 
