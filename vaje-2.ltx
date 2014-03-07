@@ -1,0 +1,87 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[utf8]{inputenc}
+%\usepackage[slovene]{babel}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{appendix}
+\usepackage{enumerate}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{delarray}
+\usepackage{graphicx}
+\usepackage{mathabx}
+\usepackage{seqsplit}
+\usepackage{url}
+
+\DeclareMathOperator*{\E}{E}
+\DeclareMathOperator*{\de}{d}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\ar}{ar}
+\DeclareMathOperator{\cl}{cl}
+\DeclareMathOperator{\lcm}{lcm}
+
+\newcommand\jacobi[2]{\left(\frac{#1}{#2}\right)}
+
+\newcommand{\cclass}[1]{\ensuremath{\textsf{#1}}}
+\newcommand{\problem}[1]{\ensuremath{\cclass{#1}}}
+
+\newcommand\cmd[1]{\texttt{#1}} % ukaze, ipd. pisi s typewriter stilom  
+\newcommand\koda[1]{\lstinputlisting[language=Python]{#1}} % vkljuci pythonsko kodo 
+\newcommand\todo[1]{\emph{[Dodaj: #1]}} % opombe 
+\newcommand\ve[1]{\mathbf{#1}} % vektorje pisi krepko
+\newcommand\trans{\mathrm{T}} % trasnsponiranje
+
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{prob}{Problem}
+%\newtheorem{definicija}{Definicija}
+%\newtheorem{trditev}{Trditev}
+%\newtheorem{izrek}{Izrek}
+%\newtheorem{lema}{Lema}
+%\newtheorem{komentar}{Komentar}
+%\newtheorem{opomba}{Opomba}
+%\newtheorem{zgled}{Zgled}
+%\newtheorem{naloga}{Naloga}
+
+\newcolumntype{I}{!{\vrule width 2pt}}
+\newlength\savewidth
+\newcommand\whline{\noalign{\global\savewidth\arrayrulewidth
+	\global\arrayrulewidth 2pt}
+	\hline
+	\noalign{\global\arrayrulewidth\savewidth}
+}
+
+% Page layout
+\textwidth=435pt
+\hoffset=0pt
+\oddsidemargin=10pt
+
+\author{Blaž Sovdat\footnote{Student ID: $27132011$. Email: \cmd{blaz.sovdat@gmail.com}.}}
+\title{Cryptography and Computer Security: Fourth Problem Set}
+
+\begin{document}
+	\maketitle
+	
+	\section{Prevedbe problemov na SAT}
+		V nadaljevanju pisemo $[k] := \{1,2,\ldots,k\}$. 
+		\subsection{Barvanje grafov}
+			Naj bo $G=(V,E)$ graf in naj bo $k>0$. Graf $G$ je $k$-obarvljiv, ce obstaja $c:V\to\{1,2,\ldots,k\}$, da za vse $uv\in E$ velja $c(v)\neq c(u)$. Sedaj za dan $(G,k)$ definiramo Boolovo formulo $\phi$, da je $\phi$ satisfiable natanko tedaj, ko je $\psi(G)\le k$. Pogoj, da so povezana vozlisca razlicnih barv:
+			\begin{equation}
+				\bigwedge_{uv\in E}\bigwedge_{i=1}^k \lnot(c_{v,i}\land c_{u,i})
+			\end{equation}
+			Pogoj, da ima vsako vozlisce barvo:
+			\begin{equation*}
+				\bigwedge_{v\in V} \bigvee_{i\in [k]} c_{v,i}
+			\end{equation*}
+			Nazadnje zagotovimo se, da je vsako vozlisce kvecjemu ene barve:
+			\begin{equation*}
+				\bigwedge_{v\in V}\bigwedge_{(i,j)\in\binom{[k]}{2}} \left(\lnot(c_{v,i}\land c_{v,j})\right)
+			\end{equation*}
+	
+\end{document}
