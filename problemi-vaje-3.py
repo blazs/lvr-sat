@@ -40,11 +40,14 @@ def graph_coloring(G, k):
 		for i in range(k):
 			for j in range(i+1, k):
 				l.append(prop.Not(prop.And(["v"+str(v)+"c"+str(i), "v"+str(v)+"c"+str(j)])))
-	print prop.And(l)
+	phi = prop.And(l)
+	print phi
+	return phi
 
 if __name__ == '__main__':
 	V = 3
 	E = [(0,1), (1,2)]
 	G = (V, E)
-	graph_coloring(G, 2)
+	phi = graph_coloring(G, 1)
+	print prop.sat3(phi)
 	
