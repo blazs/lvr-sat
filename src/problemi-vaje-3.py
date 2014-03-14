@@ -50,10 +50,16 @@ if __name__ == '__main__':
 	E = [(0,1), (1,2)]
 	G = (V, E)
 	phi = graph_coloring(G, 1)
-	print prop.sat3(phi)
+	#print prop.sat3(phi)
 	
 	## 14 Mar 2014 ##
 	phi = prop.cnf(phi)
-	sat.brute_force(phi)
-	d = {}
+	for c in phi.l:
+		# TODO: Ali je c OR ali ne? 
+		if isinstance(c, prop.Or):
+			print c
+		else:
+			for k in c.l: print "c", c
+	#sat.brute_force(phi)
+	#d = {}
 	

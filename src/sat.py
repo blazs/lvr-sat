@@ -22,6 +22,7 @@ def comb(L):
 
 # tries all possible assignments 
 def brute_force(phi):
+	# TODO: Get a list of variables from phi; then feed the list to comb() to get all possible assignments 
 	for asg in comb([0,0,0,0,0,0,0,0]):
 		print asg
 		# print { i : asg[i] for i in range(len(asg)) }
