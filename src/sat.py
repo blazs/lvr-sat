@@ -12,6 +12,7 @@ def comb(L):
 	while True:
 		R.append(L[1:])
 		j = n-1
+		# NOTE: Changing `L[j] == 1' to `L[j] == mi' will generate [m1] x [m2] x ... x [mn], where [mi] denotes {1,2, ..., mi}
 		while j > 0 and L[j] == 1:
 			L[j] = 0
 			j = j-1

@@ -51,6 +51,7 @@ if __name__ == '__main__':
 	G = (V, E)
 	phi = graph_coloring(G, 1)
 	print prop.sat3(phi)
+	
 	## 14 Mar 2014 ##
 	phi = prop.cnf(phi)
 	sat.brute_force(phi)
