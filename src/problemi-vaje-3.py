@@ -7,6 +7,7 @@
 import prop
 import math
 import re
+import sat
 
 
 # Zdruzljivost za Python 2 in Python 3
@@ -47,16 +48,19 @@ def graph_coloring(G, k):
 	return phi
 
 if __name__ == '__main__':
-    V = 3
-    E = [(1,2),(1,3),(2,4)]
-    G = (V, E)
-    phi = graph_coloring(G, 4)
-    phi = prop.cnf(phi)
-    print phi
-
-    variables=set()
-    prop.allVariables(phi,variables)
-    print variables
-    print len(variables)
-
+	V = 3
+	E = [(0,1), (1,2)]
+	G = (V, E)
+	phi = graph_coloring(G, 1)
+	#print prop.sat3(phi)
 	
+	## 14 Mar 2014 ##
+	phi = prop.cnf(phi)
+	for c in phi.l:
+		# TODO: Ali je c OR ali ne? 
+		if isinstance(c, prop.Or):
+			print c
+		else:
+			for k in c.l: print "c", c
+	#sat.brute_force(phi)
+	#d = {}
