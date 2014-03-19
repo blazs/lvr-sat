@@ -38,7 +38,17 @@ def nnf(f):
     f -- logični izraz
     """
     return f.flatten()
-    
+def allVariables(phi, variables=None):
+        #metoda vrne set vseh spremenljivk ki nastopajo v formuli phi
+
+        #ce se nismo, ustvarimo mnozico
+        if not type(variables) == set:
+            variables = set()
+        #Ce je literal, vstavimo ime spremenljivke
+        if isinstance(phi, Literal): variables.add(phi.p)
+        elif isinstance(phi, Not): allVariables(phi.t,variables)
+        else: #Torej so And oziroma OR, morda se treba dodati pogoj, ce ni nic od tega...
+            [allVariables(lit, variables) for lit in phi.l]
 def cnf(f):
     """Vrne izraz f v konjunktivni normalni obliki, torej kot konjunkcijo
     enega ali več disjunkcij spremenljivk in njihovih negacij.

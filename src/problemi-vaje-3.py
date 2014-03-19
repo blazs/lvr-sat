@@ -8,14 +8,16 @@ import prop
 import math
 import re
 
-# Združljivost za Python 2 in Python 3
+
+# Zdruzljivost za Python 2 in Python 3
+from prop import isLiteral
 try:
 	basestring
 except NameError:
 	basestring = str
 	
 def iff(p, q):
-	"""Vrne logièno ekvivalenco izrazov p in q kot konjunkcijo dveh implikacij."""
+	"""Vrne logiï¿½no ekvivalenco izrazov p in q kot konjunkcijo dveh implikacij."""
 	return prop.And(prop.Implies(p, q), prop.Implies(q, p))
 
 ####
@@ -45,9 +47,16 @@ def graph_coloring(G, k):
 	return phi
 
 if __name__ == '__main__':
-	V = 3
-	E = [(0,1), (1,2)]
-	G = (V, E)
-	phi = graph_coloring(G, 1)
-	print prop.sat3(phi)
+    V = 3
+    E = [(1,2),(1,3),(2,4)]
+    G = (V, E)
+    phi = graph_coloring(G, 4)
+    phi = prop.cnf(phi)
+    print phi
+
+    variables=set()
+    prop.allVariables(phi,variables)
+    print variables
+    print len(variables)
+
 	

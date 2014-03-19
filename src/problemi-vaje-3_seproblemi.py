@@ -9,14 +9,14 @@ import math
 import re
 import itertools
 
-# Združljivost za Python 2 in Python 3
+# Zdruï¿½ljivost za Python 2 in Python 3
 try:
 	basestring
 except NameError:
 	basestring = str
 	
 def iff(p, q):
-	"""Vrne logièno ekvivalenco izrazov p in q kot konjunkcijo dveh implikacij."""
+	"""Vrne logiï¿½no ekvivalenco izrazov p in q kot konjunkcijo dveh implikacij."""
 	return prop.And(prop.Implies(p, q), prop.Implies(q, p))
 
 ####
@@ -60,7 +60,7 @@ def hadamard(n):
 			l.append(prop.And(xor))
 			#njun xor mora imeti n/2 enic in n/2 minus enic
 			#generiramo vse mozne kombinacije elementov znotraj vrstice
-			a = list(itertools.combinations(inrange(n), n/2))
+			a = list(itertools.combinations(in range(n), n/2))
 			#preverimo, da xor ima n/2 enic => vrstica1 in vrstica2 se bosta razlikovali za n/2 elementov
 			ORi = []
 			#TODO: popravi spremenljivke od xor....
@@ -76,8 +76,8 @@ def Eq(list):
 	return prop.Or([prop.And(["c%d" % a[i] for i in range(len(list))]), prop.And([prop.Not("c%d" % a[i]) for i in range(len(list))]))
 
 if __name__ == '__main__':
-	V = 3
-	E = [(0,1), (1,2)]
+    V = 3
+    E = [(0,1), (1,2)]
 	G = (V, E)
 	phi = graph_coloring(G, 1)
 	print prop.sat3(phi)
