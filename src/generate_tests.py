@@ -3,6 +3,7 @@
 import random as rnd
 import prop
 import freser_sat as mf
+
 # 
 # Generira testne primere. (Oprostita, ker pisem Python kodo v Cjevskem stilu.)
 # 
@@ -42,12 +43,12 @@ def rnd_cnf(literals, k = 3):
 # Vrne ``tezko'' instanco SAT problema 
 # Ideja: Generiraj DNF na enak nacin pri rnd_cnf; vrni CNF.
 def hard_phi(literals, k = 3):
-    literals = shuffle(literals)
-    n = len(literals)
-    L = [prop.And(literals[i*n/k:(i+1)*n/k]) for i in range(n/k)]
-    L.append(literals[0])
-    print L
-    return prop.Or(L).cnf()
+	literals = shuffle(literals)
+	n = len(literals)
+	L = [prop.And(literals[i*n/k:(i+1)*n/k]) for i in range(n/k)]
+	L.append(literals[0])
+	print L
+	return prop.Or(L).cnf()
 
 # Vstopna tocka; nekaj testov; samo za okus 
 if __name__ == "__main__":

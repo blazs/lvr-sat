@@ -8,17 +8,15 @@ import prop
 import math
 import re
 import itertools
-import freser_sat as mf
 
-# Zdruzljivost za Python 2 in Python 3
-from prop import isLiteral
+# Združljivost za Python 2 in Python 3
 try:
 	basestring
 except NameError:
 	basestring = str
 	
 def iff(p, q):
-	"""Vrne logiï¿½no ekvivalenco izrazov p in q kot konjunkcijo dveh implikacij."""
+	"""Vrne logièno ekvivalenco izrazov p in q kot konjunkcijo dveh implikacij."""
 	return prop.And(prop.Implies(p, q), prop.Implies(q, p))
 
 ####
@@ -44,7 +42,7 @@ def graph_coloring(G, k):
 			for j in range(i+1, k):
 				l.append(prop.Not(prop.And(["v"+str(v)+"c"+str(i), "v"+str(v)+"c"+str(j)])))
 	phi = prop.And(l)
-	#print phi
+	print phi
 	return phi
 	
 #TODO: popravi!
@@ -105,9 +103,14 @@ def hadamard(n):
 #	return prop.Or([prop.And(["c%d" % a[i] for i in range(len(list))]), prop.And([prop.Not("c%d" % a[i]) for i in range(len(list))]))
 
 if __name__ == '__main__':
-    V = 4
-    E = [(0,1), (1,2), (0,3)]
-    G = (V, E)
-    phi = graph_coloring(G, 2)
-    print phi
-    print mf.sat(phi.cnf())
+	phi = hadamard(4)
+	print phi
+	#print phi
+	#print prop.sat3(phi.cnf())
+	#print prop.sat3(phi)
+	#V = 3
+	#E = [(0,1), (1,2)]
+	#G = (V, E)
+	#phi = graph_coloring(G, 1)
+	#print prop.sat3(phi)
+	
