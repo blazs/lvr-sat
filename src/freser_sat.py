@@ -68,6 +68,7 @@ def sat(phi, d=None, variables=None):
                 elif lit.p in d and d[lit.p] == prop.Fls(): return prop.Fls(), None
                 else: pass #enkrat smo ze nastavljali to spremenljivko
             else:
+                print lit.__class__.__name__
                 assert False, "Nemogoce"
     #pogledamo, ali imamo kaksne ciste spremenljivke, ki jih se nismo spremenili
     for clean in cleanVariables:

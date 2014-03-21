@@ -8,7 +8,7 @@ import prop
 import math
 import re
 import sat
-
+import freser_sat as mf
 
 # Zdruzljivost za Python 2 in Python 3
 from prop import isLiteral
@@ -44,23 +44,13 @@ def graph_coloring(G, k):
 			for j in range(i+1, k):
 				l.append(prop.Not(prop.And(["v"+str(v)+"c"+str(i), "v"+str(v)+"c"+str(j)])))
 	phi = prop.And(l)
-	print phi
+	#print phi
 	return phi
 
 if __name__ == '__main__':
-	V = 3
-	E = [(0,1), (1,2)]
-	G = (V, E)
-	phi = graph_coloring(G, 1)
-	#print prop.sat3(phi)
-	
-	## 14 Mar 2014 ##
-	phi = prop.cnf(phi)
-	for c in phi.l:
-		# TODO: Ali je c OR ali ne? 
-		if isinstance(c, prop.Or):
-			print c
-		else:
-			for k in c.l: print "c", c
-	#sat.brute_force(phi)
-	#d = {}
+    V = 4
+    E = [(0,1), (1,2), (0,3)]
+    G = (V, E)
+    phi = graph_coloring(G, 2)
+    print phi
+    print mf.sat(phi.cnf())
