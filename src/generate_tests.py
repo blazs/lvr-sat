@@ -43,20 +43,12 @@ def rnd_cnf(literals, k = 3):
 # Vrne ``tezko'' instanco SAT problema 
 # Ideja: Generiraj DNF na enak nacin pri rnd_cnf; vrni CNF.
 def hard_phi(literals, k = 3):
-<<<<<<< HEAD
 	literals = shuffle(literals)
 	n = len(literals)
 	L = [prop.And(literals[i*n/k:(i+1)*n/k]) for i in range(n/k)]
-	L.append(prop.And[literals[0], literals[1]])) # formula je zadovoljiva 
+	L.append(literals[0])
+	print L
 	return prop.Or(L).cnf()
-=======
-    literals = shuffle(literals)
-    n = len(literals)
-    L = [prop.And(literals[i*n/k:(i+1)*n/k]) for i in range(n/k)]
-    L.append(literals[0])
-    print L
-    return prop.Or(L).cnf()
->>>>>>> df629ce08ae1d5f44926dca0edc0bad4ccdc7a72
 
 # Vstopna tocka; nekaj testov; samo za okus 
 if __name__ == "__main__":
