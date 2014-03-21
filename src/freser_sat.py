@@ -38,10 +38,10 @@ def sat(phi, d=None, variables=None):
                         elif lit2 in cleanVariables: pass #spremenljivka ostaja cista
                         elif lit2.t in cleanVariables: # spremenljivka se je umazala
                             unCleanVariables.add(lit2.t) #spremenljivka gre v umazano sobo
-                            cleanVariables.remove(lit2)
+                            cleanVariables.remove(lit2.t)
                         elif lit2 not in cleanVariables and lit2.t not in cleanVariables: #spremenljivka ima moznost postati cista
                             cleanVariables.add(lit2)
-                        else: assert "Tu ni vec nic za narediti"
+                        else: assert False, "Tu ni vec nic za narediti"
                     elif isinstance(lit2, prop.Literal):
                         if lit2 in unCleanVariables: pass #spremenljivka je umazana, zanjo ni resitve
                         if lit2 in cleanVariables: pass #spremenljivka je cista, se je upanje
@@ -50,13 +50,12 @@ def sat(phi, d=None, variables=None):
                             unCleanVariables.add(lit2)
                         elif lit2 not in cleanVariables and prop.Not(lit2) not in cleanVariables:#spremenljivka ima moznost postati cista
                             cleanVariables.add(lit2)
-                        else: assert "Tu ni vec nic za narediti"
-                    else: assert "You shall not pass this door"
+                        else: assert False, "Tu ni vec nic za narediti"
+                    else: assert False, "You shall not pass this door"
 
             elif isinstance(lit,prop.Not):
                 if lit.t.p not in d: #ce spremenljivke se nismo obravnavali
                     d[lit.t.p]=prop.Fls()
-                    #phi = phi.apply(d)
                     variables.remove(lit.t.p) #smo jo nastavili
                 elif lit.t.p in d and d[lit.t.p] == prop.Tru(): return prop.Fls(), None #ce smo jo obravnavali in jo postavili obratno
                 else: pass #enkrat smo ze nastavljali to spremenljivko
