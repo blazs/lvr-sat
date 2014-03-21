@@ -42,25 +42,18 @@ def rnd_cnf(literals, k = 3):
 # Vrne ``tezko'' instanco SAT problema 
 # Ideja: Generiraj DNF na enak nacin pri rnd_cnf; vrni CNF.
 def hard_phi(literals, k = 3):
-	literals = shuffle(literals)
-	n = len(literals)
-	L = [prop.And(literals[i*n/k:(i+1)*n/k]) for i in range(n/k)]
-	L.append(prop.Or([literals[0], literals[1]]))
-	return prop.Or(L).cnf()
+    literals = shuffle(literals)
+    n = len(literals)
+    L = [prop.And(literals[i*n/k:(i+1)*n/k]) for i in range(n/k)]
+    L.append(literals[0])
+    print L
+    return prop.Or(L).cnf()
 
 # Vstopna tocka; nekaj testov; samo za okus 
 if __name__ == "__main__":
-	"""
-	for i in range(1):
-		phi = random_phi(100, 30).cnf()
-		#print phi
-		res = mf.satBruteForce(phi)
-		if isinstance(res[0], prop.Tru):
-			print i, phi, res[1]
-		else: print i, "NE", phi
-	"""
-	literals = [prop.Not("v"+str(i)) for i in range(5)]
-	literals = literals + ["v"+str(i) for i in range(5)]
-	phi = hard_phi(literals, 3)
-	print phi
-	print mf.sat(phi)
+    j=10
+    literals = [prop.Not("v"+str(i)) for i in range(j)]
+    literals = literals + ["v"+str(i) for i in range(j)]
+    phi = hard_phi(literals, 3)
+    print phi
+    print mf.sat(phi)
