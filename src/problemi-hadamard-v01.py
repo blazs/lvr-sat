@@ -103,8 +103,10 @@ def hadamard(n):
 #	return prop.Or([prop.And(["c%d" % a[i] for i in range(len(list))]), prop.And([prop.Not("c%d" % a[i]) for i in range(len(list))]))
 
 if __name__ == '__main__':
-	phi = hadamard(6)
-	print phi.cnf()
+	phi = hadamard(4)
+	print phi
+	#print phi
+	#print prop.sat3(phi.cnf())
 	#print prop.sat3(phi)
 	#V = 3
 	#E = [(0,1), (1,2)]
