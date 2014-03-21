@@ -97,10 +97,6 @@ def sat(phi, d=None, variables=None):
     else:
         return sat(phi.apply(d),d,variables) #koncali delo, stavki na zacetku funkcije poskrbijo za uspesno koncanje metode
 
-
-
-
-
 def satBruteForce(phi, d=None, variables=None):
     #Ustvarimo si slovar in mnozico vseh spremenljivk, ce jih ze nimamo
     if not type(d) == dict:
