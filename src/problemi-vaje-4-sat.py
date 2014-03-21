@@ -88,11 +88,6 @@ def satBruteForce(phi, d=None, variables=None):
     return prop.Fls(), None
 
 if __name__ == "__main__":
-    d={"a": prop.Fls(),
-        "b": prop.Tru(),
-        "c": prop.Tru()
-        }
-
     phi=prop.And([prop.Not("a"),prop.Or(prop.Not("b"),"d"),"c",prop.Or([prop.Not("b"),"a"])]).cnf()
     print phi
     print satBruteForce(phi)
