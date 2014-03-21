@@ -11,6 +11,7 @@ try:
 except NameError:
 	basestring = str
 
+# NOTE: Predpostavljamo, da je phi v CNF 
 def sat(phi, d=None, variables=None):
     #Ustvarimo si slovar in mnozico vseh spremenljivk, ce jih ze nimamo
     if not type(d) == dict:
@@ -88,6 +89,6 @@ def satBruteForce(phi, d=None, variables=None):
     return prop.Fls(), None
 
 if __name__ == "__main__":
-    phi=prop.And([prop.Not("a"),prop.Or(prop.Not("b"),"d"),"c",prop.Or([prop.Not("b"),"a"])]).cnf()
+    phi = prop.And([prop.Not("a"),prop.Or(prop.Not("b"),"d"),"c",prop.Or([prop.Not("b"),"a"])]).cnf()
     print phi
     print satBruteForce(phi)
