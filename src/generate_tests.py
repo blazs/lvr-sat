@@ -3,6 +3,7 @@
 import random as rnd
 import prop
 import freser_sat as mf
+
 # 
 # Generira testne primere. (Oprostita, ker pisem Python kodo v Cjevskem stilu.)
 # 
@@ -45,7 +46,7 @@ def hard_phi(literals, k = 3):
 	literals = shuffle(literals)
 	n = len(literals)
 	L = [prop.And(literals[i*n/k:(i+1)*n/k]) for i in range(n/k)]
-	L.append(prop.Or([literals[0], literals[1]]))
+	L.append(prop.And[literals[0], literals[1]])) # formula je zadovoljiva 
 	return prop.Or(L).cnf()
 
 # Vstopna tocka; nekaj testov; samo za okus 
