@@ -7,16 +7,22 @@
 import prop
 import math
 import re
+<<<<<<< HEAD
 import itertools
+=======
+import sat
+>>>>>>> 81c29da0663f8ef70d50f663c8c646f06b7b72a8
 
-# Združljivost za Python 2 in Python 3
+
+# Zdruzljivost za Python 2 in Python 3
+from prop import isLiteral
 try:
 	basestring
 except NameError:
 	basestring = str
 	
 def iff(p, q):
-	"""Vrne logièno ekvivalenco izrazov p in q kot konjunkcijo dveh implikacij."""
+	"""Vrne logiï¿½no ekvivalenco izrazov p in q kot konjunkcijo dveh implikacij."""
 	return prop.And(prop.Implies(p, q), prop.Implies(q, p))
 
 ####
@@ -103,12 +109,19 @@ def hadamard(n):
 #	return prop.Or([prop.And(["c%d" % a[i] for i in range(len(list))]), prop.And([prop.Not("c%d" % a[i]) for i in range(len(list))]))
 
 if __name__ == '__main__':
-	phi = hadamard(6)
-	print phi.cnf()
-	#print prop.sat3(phi)
-	#V = 3
-	#E = [(0,1), (1,2)]
-	#G = (V, E)
-	#phi = graph_coloring(G, 1)
+	V = 3
+	E = [(0,1), (1,2)]
+	G = (V, E)
+	phi = graph_coloring(G, 1)
 	#print prop.sat3(phi)
 	
+	## 14 Mar 2014 ##
+	phi = prop.cnf(phi)
+	for c in phi.l:
+		# TODO: Ali je c OR ali ne? 
+		if isinstance(c, prop.Or):
+			print c
+		else:
+			for k in c.l: print "c", c
+	#sat.brute_force(phi)
+	#d = {}
