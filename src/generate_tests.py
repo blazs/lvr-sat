@@ -45,7 +45,7 @@ def hard_phi(literals, k = 3):
 	literals = shuffle(literals)
 	n = len(literals)
 	L = [prop.And(literals[i*n/k:(i+1)*n/k]) for i in range(n/k)]
-	L.append(literals[0])
+	L.append(prop.Or([literals[0], literals[1]]))
 	return prop.Or(L).cnf()
 
 # Vstopna tocka; nekaj testov; samo za okus 
@@ -61,6 +61,6 @@ if __name__ == "__main__":
 	"""
 	literals = [prop.Not("v"+str(i)) for i in range(5)]
 	literals = literals + ["v"+str(i) for i in range(5)]
-	phi = hard_phi(literals)
+	phi = hard_phi(literals, 3)
 	print phi
 	print mf.sat(phi)
