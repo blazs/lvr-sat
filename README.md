@@ -6,7 +6,7 @@ Logika v racunalnistvu --- koda iz vaj.
 # Dokumentacija 
 
 ## Struktura projekta 
- * `doc/` vsebuje opis nekaterih prevedb odlocitvenih problemov na SAT. 
+ * `doc/` vsebuje (LaTeX :-) opis nekaterih prevedb odlocitvenih problemov na SAT. V delu. 
  * `src/` vsebuje izvorno kodo:
    * `src/main.py` glavna datoteka s primeri uporabe.
    * `src/prop.py` osnovne podatkovne strukture. 
