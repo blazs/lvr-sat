@@ -69,7 +69,7 @@ def sat(phi, d=None, variables=None):
                 else: pass #enkrat smo ze nastavljali to spremenljivko
             else:
                 print lit.__class__.__name__
-                assert False, "Nemogoce"
+                assert False, "NNemogoce: Je formula res CNF?"
     """
     #pogledamo, ali imamo kaksne ciste spremenljivke, ki jih se nismo spremenili
     for clean in cleanVariables:

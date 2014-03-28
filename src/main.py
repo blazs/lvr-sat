@@ -32,7 +32,7 @@ def prevedbe_test():
 	print "Stevilo barv k = ", k , ", graf G = ", G
 	phi_g = p.graph_coloring(G, k)
 	print "Pripadajoc SAT phi = ", phi_g
-	return phi_g
+	return phi_g.cnf()
 
 # Vstopna tocka 
 if __name__ == "__main__":
