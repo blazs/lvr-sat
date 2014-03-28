@@ -19,11 +19,12 @@ def sat(phi, d=None, variables=None):
     if not type(variables) == set:
         variables=set()
         prop.allVariables(phi,variables)
+    #ustvarimo mnozico cistih in necistih spremenljivk
     cleanVariables = set()
     unCleanVariables = set()
     if isinstance(phi, prop.Tru): return prop.Tru(), d
-    elif isinstance(phi, prop.Fls): return prop.Fls(), None
-    elif isinstance(phi, prop.Or) and len(phi.l) == 0: return prop.Fls(), None #Vcasih se zgodi, da dobimo prazen Or namesto prop.Fls
+    elif isinstance(phi, prop.Fls): return prop.Fls(), None, phi.__class__.__name__
+    elif isinstance(phi, prop.Or) and len(phi.l) == 0: return prop.Fls(), None, phi.__class__.__name__ #Vcasih se zgodi, da dobimo prazen Or namesto prop.Fls
     elif isinstance(phi, prop.And):
         if len(phi.l) == 0: return prop.Tru(), d #prazen And pomeni prop.Tru()
         #print len(phi.l)
