@@ -70,6 +70,7 @@ def sat(phi, d=None, variables=None):
             else:
                 print lit.__class__.__name__
                 assert False, "Nemogoce"
+    """
     #pogledamo, ali imamo kaksne ciste spremenljivke, ki jih se nismo spremenili
     for clean in cleanVariables:
         if isinstance(clean,prop.Not):
@@ -81,7 +82,7 @@ def sat(phi, d=None, variables=None):
             if clean.p in variables: #spremenljivke se nismo nastavljali
                 d[clean.p] = prop.Tru()
                 variables.remove(clean.p)
-
+    """
     if len(variables) != 0:#Nismo se porabili vseh spremenljivk
         var=random.sample(variables,1)[0] #si izberemo eno
         variables.remove(var)
