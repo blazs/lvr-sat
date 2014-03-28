@@ -2,12 +2,13 @@
 
 import random as rnd
 import prop
-import freser_sat as mf
+import sat as sat
 
 # 
 # Generira testne primere. (Oprostita, ker pisem Python kodo v Cjevskem stilu.)
 # 
 
+# Izracuna nakljucno permutacijo seznama L 
 def shuffle(L):
 	for i in range(len(L)):
 		r = rnd.randint(i, len(L)-1)
@@ -57,4 +58,4 @@ if __name__ == "__main__":
     literals = literals + ["v"+str(i) for i in range(j)]
     phi = hard_phi(literals, 3)
     print phi
-    print mf.sat(phi)
+    print sat.sat(phi)
