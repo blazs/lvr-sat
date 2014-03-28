@@ -12,7 +12,7 @@ Logika v racunalnistvu --- koda iz vaj.
    * `src/prop.py` osnovne podatkovne strukture, rahlo spremenjena @jaanos koda. 
    * `src/simplify.sat` poenostavljanje izrazov. 
    * `src/sat.py` naiven SAT solver.
-   * `src/freser_sat.py` DPLL SAT solver [2](##literatura), predpostavlja, da je vhodna formula v CNF.
+   * `src/freser_sat.py` DPLL SAT solver [[2](#literatura)], predpostavlja, da je vhodna formula v CNF.
    * `src/generate_tests.py` preprost generator testnih instanc.
 
 ## Primer uporabe 
