@@ -44,7 +44,7 @@ def sat(phi, d=None, variables=None):
                         else: assert False, "Tu ni vec nic za narediti"
                     elif isinstance(lit2, prop.Literal):
                         if lit2 in unCleanVariables: pass #spremenljivka je umazana, zanjo ni resitve
-                        if lit2 in cleanVariables: pass #spremenljivka je cista, se je upanje
+                        elif lit2 in cleanVariables: pass #spremenljivka je cista, se je upanje
                         elif prop.Not(lit2) in cleanVariables: #umazali smo spremenljivko
                             cleanVariables.remove(prop.Not(lit2))
                             unCleanVariables.add(lit2)
@@ -70,7 +70,7 @@ def sat(phi, d=None, variables=None):
             else:
                 print lit.__class__.__name__
                 assert False, "NNemogoce: Je formula res CNF?"
-    """
+
     #pogledamo, ali imamo kaksne ciste spremenljivke, ki jih se nismo spremenili
     for clean in cleanVariables:
         if isinstance(clean,prop.Not):
@@ -82,7 +82,7 @@ def sat(phi, d=None, variables=None):
             if clean.p in variables: #spremenljivke se nismo nastavljali
                 d[clean.p] = prop.Tru()
                 variables.remove(clean.p)
-    """
+
     if len(variables) != 0:#Nismo se porabili vseh spremenljivk
         var=random.sample(variables,1)[0] #si izberemo eno
         variables.remove(var)
