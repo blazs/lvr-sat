@@ -51,7 +51,7 @@ def sudoku(s):
 			
 	#print povVrst;
 	#print povStolp;
-	
+			
 	#povezemo kvadratke znotraj 3x3 kvadratov
 	for i in range(0,3):
 		for j in range(1,4):
@@ -65,6 +65,10 @@ def sudoku(s):
 			povKvadr.append(((j*3-1)+(9*(3*i+1)-8), (j*3-1)+(9*(3*i+1))+8)); # Doda povezav, ki jo manjkala 
 			povKvadr.append(((j*3-1)+(9*(3*i+1)), (j*3-1)+(9*(3*i+1))+8));
 			povKvadr.append(((j*3-1)+(9*(3*i+1)), (j*3-1)+(9*(3*i+1))-8));
+			povKvadr.append(((j*3-1)+(9*(3*i+1)-1), (j*3-1)+(9*(3*i+1))-9)) # /
+			povKvadr.append(((j*3-1)+(9*(3*i+1)+1), (j*3-1)+(9*(3*i+1))-9)) # \
+			povKvadr.append(((j*3-1)+(9*(3*i+1)-1), (j*3-1)+(9*(3*i+1))+9)) # /
+			povKvadr.append(((j*3-1)+(9*(3*i+1)+1), (j*3-1)+(9*(3*i+1))+9)) # \
 	#print povKvadr;
 	
 	povezave = povVrst + povStolp + povKvadr;
@@ -159,7 +163,7 @@ sud = \
  [None, '4', '1', None, None, '8', None, None, '6'],
  [None, None, '6', '7', None, '1', '9', None, '3'],
  ['7', None, None, None, '9', '6', None, '4', None]]
- """
+"""
  
 """ 
 sud = \

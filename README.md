@@ -17,6 +17,8 @@ Logika v racunalnistvu --- koda iz vaj.
 ## Primer uporabe 
  V delu.
 
+## Komentar
+ Uporabili smo [seznam``benchmark'' sudokujev](http://lipas.uwasa.fi/~timan/sudoku/), ki ga vzdrzujeta Timo Mantere in Janne Koljonen.
 ## Literatura 
  * [1] Huth and Ryan, [Logic in Computer Science: Modelling and Reasoning about Systems](http://www.amazon.com/Logic-Computer-Science-Modelling-Reasoning/dp/052154310X), second edition, 2004.
  * [2] Wikipedia, [DPLL algorithm](http://en.wikipedia.org/wiki/DPLL_algorithm), Wikipedia, accessed 28-Mar-2014.
