@@ -183,10 +183,7 @@ def sat2(phi, d=None, variables=None):
         candidates = []
         if (expressionSize.empty() == True): assert False, "Morajo biti vsaj nekatere spremenljivke"
         cand=expressionSize.get()
-        print variables
-
         while(cand[1] not in variables): #Izberemo prvo spremenljivko, ki se ni bila dolocena
-            #print cand[1]
             if (expressionSize.empty() == True): assert False, "Morajo biti vsaj nekatere spremenljivke"
             cand=expressionSize.get()
         candidates.append(cand)
