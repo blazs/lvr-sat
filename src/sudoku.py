@@ -3,7 +3,7 @@ import math
 import re
 import itertools
 import sat
-import freser_sat
+#import freser_sat
 
 #sudoku pretvorjen na barvanje grafov...
 def sudoku(s):
@@ -12,7 +12,7 @@ def sudoku(s):
 	l = []; #list logicnih formul
 	#sudoku je oznacen:
 	"""
-		 1  2  3  4  5  6  7  8  9
+		1  2  3  4  5  6  7  8  9
 		10 11 12 13 14 15 16 17 18
 		...
 	"""
@@ -34,6 +34,7 @@ def sudoku(s):
 		if (i < 73):
 			povStolp.append((i,9+i)); #delamo povezave stolpcev
 	"""
+	# Konstriramo graf, 9-barvljiv <==> Sudoku resljiv 
 	#povezemo kvadratke v vrsticah
 	for k in range(0,9):
 		for i in range(1,10):
@@ -41,9 +42,9 @@ def sudoku(s):
 				povVrst.append((i+k*9, j+k*9));
 	
 	#povezemo kvadratke v stolpcih
-	for i in range(1,10):
-		for k in range(0,9):
-			for j in range(k+1, 9):
+	for i in range(1,10): # index stolpca v k-ti vrstici 
+		for k in range(0,9): # index vrstice 
+			for j in range(k+1, 9): # stoplci, ki se niso povezavi s k-tim stolpcem 
 				povStolp.append((i+9*k, i+9*j));
 	
 	
@@ -58,8 +59,10 @@ def sudoku(s):
 			#povKvadr.append(((j*3-1)+(9*(3*i+1)), (j*3-1)+(9*(3*i+1))-1));
 			#povKvadr.append(((j*3-1)+(9*(3*i+1)), (j*3-1)+(9*(3*i+1))+9));
 			#povKvadr.append(((j*3-1)+(9*(3*i+1)), (j*3-1)+(9*(3*i+1))-9));
+			povKvadr.append(((j*3-1)+(9*(3*i+1)-10), (j*3-1)+(9*(3*i+1))+10)); # Doda povezavo, ki je manjkala 
 			povKvadr.append(((j*3-1)+(9*(3*i+1)), (j*3-1)+(9*(3*i+1))+10));
 			povKvadr.append(((j*3-1)+(9*(3*i+1)), (j*3-1)+(9*(3*i+1))-10));
+			povKvadr.append(((j*3-1)+(9*(3*i+1)-8), (j*3-1)+(9*(3*i+1))+8)); # Doda povezav, ki jo manjkala 
 			povKvadr.append(((j*3-1)+(9*(3*i+1)), (j*3-1)+(9*(3*i+1))+8));
 			povKvadr.append(((j*3-1)+(9*(3*i+1)), (j*3-1)+(9*(3*i+1))-8));
 	#print povKvadr;
@@ -75,7 +78,7 @@ def sudoku(s):
 	barveVoz = [];
 	for i in range(1, V+1):
 		if(s[i-1] == None): #ce je None, je lahko ubistvu kjerekoli barve, ce ne upostevamo pogojev
-			barveVoz.append(prop.Or(["v%dc%d" % (i, j) for j in range(1,k+1)]));
+			barveVoz.append(prop.Or(["v%dc%d" % (i, j) for j in range(1, 9+1)]));
 		else:
 			#print str(i)+" "+s[i-1];
 			barveVoz.append("v%dc%d" % (i, int(s[i-1]))); #ce ni None, ima ze tocno doloceno barvo...
@@ -93,18 +96,18 @@ def sudoku(s):
 			#barveKraj.append(prop.Not(prop.And(["v"+str(u)+"c"+s[v-1], "v"+str(v)+"c"+s[v-1]])));
 			barveKraj.append(prop.Not("v"+str(u)+"c"+s[v-1]));
 		else:
-			for c in range(1,k+1):
+			for c in range(1, 9+1):
 				barveKraj.append(prop.Not(prop.And(["v"+str(u)+"c"+str(c), "v"+str(v)+"c"+str(c)])));
 		#l.append(prop.And([prop.And([prop.Not(prop.And(["v"+str(u)+"c"+str(c), "v"+str(v)+"c"+str(c)])) for c in range(k)])]))
 	#print barveKraj;
 	l.append(prop.And(barveKraj));
 	#print l;
-	
+	# print "BARVEEEEE", k
 	# vsako vozlisce je kvecjemu ene barve 
 	for v in range(1, V+1):
 		if(s[v-1] == None):
-			for i in range(1,k+1):
-				for j in range(i+1, k+1):
+			for i in range(1, 9+1):
+				for j in range(i+1, 9+1):
 					l.append(prop.Not(prop.And(["v"+str(v)+"c"+str(i), "v"+str(v)+"c"+str(j)])))
 		
 	l = prop.And(l);
@@ -144,7 +147,7 @@ def solveSudoku(sud, sdq):
 		else:
 			print sudoku[i-1],
 			
-"""		
+
 sud = \
 [[None, '8', None, '1', '6', None, None, None, '7'],
  ['1', None, '7', '4', None, '3', '6', None, None],
@@ -155,8 +158,8 @@ sud = \
  [None, '4', '1', None, None, '8', None, None, '6'],
  [None, None, '6', '7', None, '1', '9', None, '3'],
  ['7', None, None, None, '9', '6', None, '4', None]]
- """
  
+"""
 sud = \
 [[None, '4', '8', None, '9', '5', None, None, '6'],
 ['5', None, '1', '6', '2', '8', '3', None, '9'],
@@ -164,9 +167,10 @@ sud = \
 ['6', None, '2', '5', '3', '9', '1', '7', '4'],
 ['3', '5', '9', '1', '7', '4', None, None, None],
 [None, '1', '4', None, '6', '2', '9', '5', '3'],
-['8', '6', '3', '4', '1', None, '2', '9', None],
+['8', '6', '3', '4', '1', None, '2', None, None],
 ['1', '9', None, None, '8', '6', '4', '3', '7'],
 [None, '2', '7', '9', '5', '3', None, '6', None]];
+"""
  
 phi = sudoku(sud);
 phiCNF = prop.cnf(phi);
