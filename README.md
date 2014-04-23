@@ -22,5 +22,5 @@ Logika v racunalnistvu --- koda iz vaj.
 ## Literatura 
  * [1] Huth and Ryan. [Logic in Computer Science: Modelling and Reasoning about Systems](http://www.amazon.com/Logic-Computer-Science-Modelling-Reasoning/dp/052154310X), second edition, 2004.
  * [2] Wikipedia. [DPLL algorithm](http://en.wikipedia.org/wiki/DPLL_algorithm), Wikipedia, accessed 28 March 2014.
- * [3] Boris Konev and Alex Lisista. [A SAT Attack on the Erdos Discrepancy Conjecture](http://arxiv.org/abs/1403.6348). arXiv preprint, Feburary 2014.
+ * [3] Boris Konev and Alex Lisista. [A SAT Attack on the Erdos Discrepancy Conjecture](http://arxiv.org/abs/1402.2184). arXiv preprint, Feburary 2014.
  * [4] Timo Mantere and Janne Koljonen. [Sudoku research page](http://lipas.uwasa.fi/~timan/sudoku/). 
