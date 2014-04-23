@@ -148,6 +148,7 @@ def solveSudoku(sud, sdq):
 			print sudoku[i-1],
 			
 
+"""
 sud = \
 [[None, '8', None, '1', '6', None, None, None, '7'],
  ['1', None, '7', '4', None, '3', '6', None, None],
@@ -158,7 +159,32 @@ sud = \
  [None, '4', '1', None, None, '8', None, None, '6'],
  [None, None, '6', '7', None, '1', '9', None, '3'],
  ['7', None, None, None, '9', '6', None, '4', None]]
+ """
  
+""" 
+sud = \
+[[None, '2', '7', '8', '9', '3', None, None, '6'],
+[None, '6', '9', None, None, None, '3', None, None],
+[None, None, '1', None, None, None, None, None, '8'],
+[None, '1', '8', None, None, None, None, None, '4'],
+[None, None, None, '1', None, '7', None, None, None],
+['9', None, None, None, None, None, '5', None, None],
+[None, None, '2', None, None, None, '4', '1', None],
+['1', None, None, '9', '5', '6', '8', '3', None]]
+"""
+
+## Tezak sudoku (http://lipas.uwasa.fi/~timan/sudoku/) ## 
+sud = \
+[['1', None, None, None, None, '7', None, '9', None],
+[None, '3', None, None, '2', None, None, None, '8'],
+[None, None, '9', '6', None, None, '5', None, None],
+[None, None, '5', '3', None, None, '9', None, None],
+[None, '1', None, None, '8', None, None, None, '2'],
+['6', None, None, None, None, '4', None, None, None],
+['3', None, None, None, None, None, None, '1', None],
+[None, '4', None, None, None, None, None, None, '7'],
+[None, None, '7', None, None, None, '3', None, None]]
+
 """
 sud = \
 [[None, '4', '8', None, '9', '5', None, None, '6'],
