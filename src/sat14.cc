@@ -359,6 +359,7 @@ int main(int argc, char** argv) {
 		bits = atoi(argv[3]);
 	} else {
 		std::cout << "usage: " << argv[0] << " [length] [discrepancy] [bits]" << std::endl;
+		return 1;
 	}
 	
     assert(2*DISCREPANCY+2 <= (int) pow(2,BITS));
