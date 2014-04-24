@@ -11,20 +11,12 @@ import itertools
 import sat
 import os
 
-def clean(v):
-	if v[0] == '-':
-		return prop.Not("v"+v[1:])
-	else:
-		return "v"+v
+clean = lambda v: prop.Not("v"+v[1:]) if v[0] == '-' else "v"+v
 
 def edp2sat(fname):
 	L = open(fname).read().split('\n')
 	fmt = L[0]
 	return prop.And([prop.Or([clean(c) for c in clause.split()[:-1]]) for clause in L[1:-1]])
-	#for clause in L[1:]:
-	#	t = ["v"+str(c.replace("-", "m")) for c in clause.split()]
-	#	phi.append(prop.Or(t))
-	
 
 if __name__ == '__main__':
 	length = 2
