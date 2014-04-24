@@ -201,8 +201,15 @@ sud = \
 ['1', '9', None, None, '8', '6', '4', '3', '7'],
 [None, '2', '7', '9', '5', '3', None, '6', None]];
 """
- 
-phi = sudoku(sud);
+def readSudoku(filename):
+    sud=[]
+    with open(filename, "r") as f1:
+        for line in f1.readlines():
+            stevilke = line.strip().split(" ")
+            sud.append([st if int(st) != 0 else None for st in stevilke])
+    return sud
+
+phi = sudoku(readSudoku("s10a.txt"));
 phiCNF = prop.cnf(phi);
 #print phi;
 #print phiCNF;
