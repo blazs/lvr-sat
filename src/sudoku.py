@@ -213,6 +213,3 @@ print sdq;
 solveSudoku(sud, sdq);
 #print sdq[1];
 #print sdq[1]['v'+str(11)+'c5'];
-
-
-	
