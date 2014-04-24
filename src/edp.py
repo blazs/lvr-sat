@@ -19,13 +19,17 @@ def edp2sat(fname):
 	return prop.And([prop.Or([clean(c) for c in clause.split()[:-1]]) for clause in L[1:-1]])
 
 if __name__ == '__main__':
-	length = 2
+	length = 4
 	discrepancy = 1
 	bits = 5
-	cmd = 'sat14.exe %d %d %d > out.cnf' % (length, discrepancy, bits)
-	print cmd
+	cmd = 'sat14 %d %d %d > out.cnf' % (length, discrepancy, bits)
+	print "Compiling sat14.cc..."
+	os.system('g++ sat14.cc -o sat14')
+	print "Running sat14.cc..."
 	os.system(cmd)
+	print "Cleaning up the output..."
 	os.system('grep -v "^c" out.cnf | grep -v "^$" > new.cnf')
 	phi = edp2sat('new.cnf')
-	print phi
+	print "Running the SAT solver..."
+	# print phi
 	print sat.sat(phi)
