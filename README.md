@@ -1,7 +1,7 @@
 lvr
 ===
 
-Logika v racunalnistvu --- koda iz vaj.
+Koda in dokumentacija za predmet [Logika v racunalnistvu](http://ucilnica.fmf.uni-lj.si/course/view.php?id=252).
 
 # Dokumentacija 
 
@@ -18,9 +18,11 @@ Logika v racunalnistvu --- koda iz vaj.
  V delu.
 
 ## Komentar
- Uporabili smo seznam benchmark sudokujev [4]. Za Erdosev problem diskrepance (EDP) smo vzeli C++ program `sat14` [3], ki za dane parametre --- dolzina zaporedja, diskrepanca, in stevilo bitov --- generira SAT instanco v CNF obliki. Nasa koda prevede in pozene `sat14`, pocisti njegov izhod ter ga prevede iz [DIMACS](http://www.cs.ubc.ca/~hoos/SATLIB/Benchmarks/SAT/satformat.ps) formata v nas format. (Nas solver po nekaj urah ne konca na vhodu C=1 za dolzino 11; to je najkrajsa dolzina za katero ne obstaja +/- zaporedje diskrepance kvecjemu 1.)
+ Uporabili smo seznam benchmark sudokujev [4].
+ 
+ Za Erdosev problem diskrepance (EDP) smo vzeli C++ program `sat14` [3], ki za dane parametre --- dolzina zaporedja, diskrepanca, in stevilo bitov --- generira SAT instanco v CNF obliki. Nasa koda prevede in pozene `sat14`, pocisti njegov izhod ter ga prevede iz [DIMACS](http://www.cs.ubc.ca/~hoos/SATLIB/Benchmarks/SAT/satformat.ps) formata v nas format. (Nas solver po nekaj urah ne konca na vhodu C=1 za dolzino 11; to je najkrajsa dolzina za katero ne obstaja +/- zaporedje diskrepance kvecjemu 1.)
 ## Literatura 
  * [1] Huth and Ryan. [Logic in Computer Science: Modelling and Reasoning about Systems](http://www.amazon.com/Logic-Computer-Science-Modelling-Reasoning/dp/052154310X), second edition, 2004.
  * [2] Wikipedia. [DPLL algorithm](http://en.wikipedia.org/wiki/DPLL_algorithm), Wikipedia, accessed 28 March 2014.
- * [3] Boris Konev and Alex Lisista. [SAT encoding of the  iz DIMACS formataErdős discrepancy problem](http://cgi.csc.liv.ac.uk/~konev/SAT14/).
+ * [3] Boris Konev and Alexei Lisista. [SAT encoding of the Erdős discrepancy problem](http://cgi.csc.liv.ac.uk/~konev/SAT14/).
  * [4] Timo Mantere and Janne Koljonen. [Sudoku research page](http://lipas.uwasa.fi/~timan/sudoku/). 
