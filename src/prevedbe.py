@@ -5,6 +5,7 @@ import re
 import itertools
 import prop
 import os # Klicemo g++ 
+import helpers as h
 
 # Takes an instance of graph k-coloring problem (G,k) and outputs corresponsing Boolean formula Phi such
 # that Phi is satisfiable if and only if G is k-colorable. 
@@ -175,7 +176,10 @@ def solveSudoku(sud, sdq):
 		else:
 			print sudoku[i-1],
 
-# Erdosev problem diskrepance --- klice zunanjo kodo [Konev and Lisista, 2014]
+# Erdosev problem diskrepance
+# Klicemo rahlo spremenjen zunanji C++ program [Konev and Lisista, 2014]. Program
+# vrne SAT instanco v CNF, ki ustreza Erdosevemu problemu diskrepance za dane parametre. Formulo
+# pretvorimo v primerno obliko in jo nahranimo nasemu solverju. 
 def edp2sat(C, L):
 	bits = int(math.ceil(math.log(2*(C+1), 2)))
 	discrepancy = C
@@ -187,13 +191,6 @@ def edp2sat(C, L):
 	os.system(cmd)
 	print "Cleaning up the output..."
 	os.system('grep -v "^c" out.cnf | grep -v "^$" > new.cnf')
-	phi = parse_output('new.cnf')
+	phi = h.parse_output('new.cnf')
 	#print "Running the SAT solver..."
 	return phi
-
-clean = lambda v: prop.Not("v"+v[1:]) if v[0] == '-' else "v"+v
-
-def parse_output(fname = 'new.cnf'):
-	L = open(fname).read().split('\n')
-	fmt = L[0]
-	return prop.And([prop.Or([clean(c) for c in clause.split()[:-1]]) for clause in L[1:-1]])
