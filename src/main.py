@@ -1,5 +1,9 @@
 #!/usr/bin/python
 
+# 
+# Nekaj primerov uporabe 
+# 
+
 import math
 import re
 import itertools
@@ -25,7 +29,7 @@ def generate_test():
 	pass
 
 # Primer uporabe funkcij za racunanje prevedb odlocitvenih problemov na SAT 
-def prevedbe_test():
+def graph_coloring_test():
 	print "#"*3, "Prevajam k-barvanje grafa na SAT", "#"*3
 	G = (3, [(0,1), (1,2), (0,2)])
 	k = 2
