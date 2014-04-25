@@ -22,9 +22,13 @@ Koda in dokumentacija za predmet [Logika v racunalnistvu](http://ucilnica.fmf.un
 ### Manipuliranje Boolovih formul
   Primer.
 ### Uporaba SAT solverja
-  Primer.
+  Naj bo `phi` Boolova formula v CNF obliki; glej prejšnji podrazdelek za več o formulah. Ko uvozimo modul `src/sat.py` (ukaz `import sat`), lahko kličemo `sat.sat(phi)`; to je DPLL [2] solver. Za bruteforce solver kličemo `sat.satBruteFroce(phi)`.
 ### Uporaba prevedb
-  Primeri.
+  Prevedbe so implementirane v modulu `src/prevedbe.py`. Na voljo so naslednje funkcije:
+   * `graph_coloring2sat(G, k)` vrne SAT instanco, ki je zadovoljiva natanko tedaj, ko je (neusmerjen) graf `G` `k`-obarvljiv. Pri tem je `G=(n, E)`, pri cemer je `n` stevilo povezav in je `E=[(i,j),...,(k,r)]` seznam povezav; vsaka povezava je predstavljena s parom vozlisc; vozlisca so cela stevila `{1,2,...,n}`.
+   * `sudoku2sat(sudoku)` vrne SAT instanco, ki je zadovoljiva natanko tedaj, ko je `sudoku` resljiv. Pri tem je `sudoku=get_sudoku(sudoku01a.in)`, kjer je `sudoku01a.in` sudoku v formatu [4].
+   * `hadamard2sat(n)` vrne SAT instanco, ki je zadovoljica natanko tedaj, ko obstaja `n`-krat-`n` Hadamardova matrika. 
+   * `edp2sat(C, L)` vrne SAT instanco, ki je zadovoljica natanko tedaj, ko obstaja +/- zaporedje dolzine `L` diskrepance kvecjemu `C`.
 
 ## Komentar
  SAT solver smo izboljsali z enostavno hevristiko. (Izberemo spremenljivko, ki se je pojavila v najmanjšem izrazu; v primeru izenačenja izberemo tisto, ki se je pojavila največkrat.)
