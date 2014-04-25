@@ -11,7 +11,6 @@ import prop
 
 # Sestavi CNF formulo iz DIMACS formata 
 clean = lambda v: prop.Not("v"+v[1:]) if v[0] == '-' else "v"+v
-
 def parse_output(fname = 'new.cnf'):
 	L = open(fname).read().split('\n')
 	fmt = L[0]
