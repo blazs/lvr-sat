@@ -19,4 +19,8 @@ def parse_output(fname = 'new.cnf'):
 
 # Vzame sudoku, kjer so vnosi v vrstici loceni s presledki; vrstice locene z '\n' (novo vrstico); prazna mesta oznacena z 0
 # Vrne sudoku primeren za nas (Borjev :-) sudoku solver 
-
+replace = lambda L: [None if x == '0' else x for x in L]
+def get_sudoku(fname):
+	L = open(fname).read().split('\n')
+	S = [replace(l.split()) for l in L]
+	return S

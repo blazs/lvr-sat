@@ -11,6 +11,7 @@ import prop
 import sat as sat
 import prevedbe as p
 import generate_tests as gen
+import helpers as h
 
 ### Primer uporabe SAT solverjev ###
 # Primer uporabe DPLL SAT solverja 
@@ -82,6 +83,12 @@ if __name__ == "__main__":
 	k = 2 # dvodelnost 
 	G = (3, [(0,1), (1,2), (0,2)])
 	phi = p.graph_coloring2sat(G, k)
+	print phi
+	# Sudoku
+	print "*" * 80
+	print "Sudoku"
+	S = h.get_sudoku('sudoku01a.in')
+	phi = p.sudoku2sat(S)
 	print phi
 	# Hadamard 
 	print "*" * 80

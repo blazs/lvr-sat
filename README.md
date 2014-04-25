@@ -14,7 +14,7 @@ Koda in dokumentacija za predmet [Logika v racunalnistvu](http://ucilnica.fmf.un
    * `src/sat.py` naiven bruteforce SAT solver in DPLL SAT solver [[2](#literatura)]; predpostavlja, da je vhodna formula v CNF;
    * `src/generate_tests.py` preprost generator testnih instanc;
    * `src/helpers.py` pomozne funkcije za pretvarjanje med formati (sudoku v nas interni format, ipd.);
-   * `src/sat14.cc` C++ program [3], ki sta ga objavila B. Konev in A. Lisista; implementira njuno prevedbo Erdosevega problema diskrepance na SAT.
+   * `src/sat14.cc` C++ program [3], ki sta ga objavila [B. Konev](http://cgi.csc.liv.ac.uk/~konev/) in [A. Lisista](https://cgi.csc.liv.ac.uk/~alexei/); implementira njuno prevedbo Erdosevega problema diskrepance na SAT.
 [//]: # (Vsebuje tudi naiven SAT solver, ki iterativno preisce vseh 2^n prireditev vrednosti izrazu, a je nedokoncan.)
 ## Primer uporabe 
  To je kratek opis uporabe nase implementacije. 

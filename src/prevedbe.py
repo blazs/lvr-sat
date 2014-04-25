@@ -13,7 +13,7 @@ def graph_coloring2sat(G, k):
 	# G[0] naj bo stevilo povezav 
 	# G[1] naj bo seznam parov vozlics, a.k.a, seznan pobexzav
 	# k > 0 je stevilo barv 
-	assert k>0, "Premalo barv"
+	assert k > 0, "Premalo barv"
 	
 	l = []
 	
@@ -149,6 +149,8 @@ def sudoku2sat(s):
 	return prop.And(l);
 
 # Prevede dan sudoku na SAT instanco; resi instanco; konstruira resitev za sudoku 
+# sud ... SAT instanca, ki pripada sudokujevi instanci 
+# sdq ... sudoku instanca 
 def solveSudoku(sud, sdq):
 	sudoku = [0]*81;
 	for i in range(1,82):
