@@ -26,6 +26,8 @@ Koda in dokumentacija za predmet [Logika v racunalnistvu](http://ucilnica.fmf.un
   Primeri.
 
 ## Komentar
+ SAT solver smo izboljsali z enostavno hevristiko. (Izberemo spremenljivko, ki se je pojavila v najmanjšem izrazu; v primeru izenačenja izberemo tisto, ki se je pojavila največkrat.)
+ 
  Uporabili smo seznam benchmark sudokujev [4].
  
  Prevedbe problemov smo na grobo opisali v `doc/lvr-docs.pdf`; implementacije prevedb najdemo v `src`; glej opis strukture projekta. 
