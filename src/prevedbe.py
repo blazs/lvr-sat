@@ -4,12 +4,11 @@ import math
 import re
 import itertools
 import prop
+import os # Klicemo g++ 
 
-####
 # Takes an instance of graph k-coloring problem (G,k) and outputs corresponsing Boolean formula Phi such
 # that Phi is satisfiable if and only if G is k-colorable. 
-####
-def graph_coloring(G, k):
+def graph_coloring2sat(G, k):
 	# G[0] naj bo stevilo povezav 
 	# G[1] naj bo seznam parov vozlics, a.k.a, seznan pobexzav
 	# k > 0 je stevilo barv 
@@ -31,7 +30,7 @@ def graph_coloring(G, k):
 	#print phi
 	return phi
 
-def hadamard(n):
+def hadamard2sat(n):
 	assert n % 2 == 0;
 	l = [];
 	
@@ -62,8 +61,8 @@ def hadamard(n):
 	#vrnemo koncno formulo
 	return prop.And(l);
 
-# Sudoku pretvorjen na barvanje grafov 
-def sudoku(s):
+# Sudoku preveden na barvanje grafov 
+def sudoku2sat(s):
 	V = 81; #stevilo kvadratkov (vozlisc)
 	k = 9; #stevilo barv
 	l = []; #list logicnih formul
@@ -175,3 +174,26 @@ def solveSudoku(sud, sdq):
 			print "";
 		else:
 			print sudoku[i-1],
+
+# Erdosev problem diskrepance --- klice zunanjo kodo [Konev and Lisista, 2014]
+def edp2sat(C, L):
+	bits = int(math.ceil(math.log(2*(C+1), 2)))
+	discrepancy = C
+	length = L
+	cmd = 'sat14 %d %d %d > out.cnf' % (length, discrepancy, bits)
+	print "Compiling sat14.cc..."
+	os.system('g++ sat14.cc -o sat14')
+	print "Running sat14.cc..."
+	os.system(cmd)
+	print "Cleaning up the output..."
+	os.system('grep -v "^c" out.cnf | grep -v "^$" > new.cnf')
+	phi = parse_output('new.cnf')
+	#print "Running the SAT solver..."
+	return phi
+
+clean = lambda v: prop.Not("v"+v[1:]) if v[0] == '-' else "v"+v
+
+def parse_output(fname = 'new.cnf'):
+	L = open(fname).read().split('\n')
+	fmt = L[0]
+	return prop.And([prop.Or([clean(c) for c in clause.split()[:-1]]) for clause in L[1:-1]])
