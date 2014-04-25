@@ -15,7 +15,13 @@ Koda in dokumentacija za predmet [Logika v racunalnistvu](http://ucilnica.fmf.un
    * `src/generate_tests.py` preprost generator testnih instanc.
 [//]: # (Vsebuje tudi naiven SAT solver, ki iterativno preisce vseh 2^n prireditev vrednosti izrazu, a je nedokoncan.)
 ## Primer uporabe 
- V delu.
+ To je kratek opis uporabe nase implementacije. 
+ ### Manipuliranje Boolovih formul
+  Primer.
+ ### Uporaba SAT solverja
+  Primer.
+ ### Uporaba prevedb
+  Primeri.
 
 ## Komentar
  Uporabili smo seznam benchmark sudokujev [4].
