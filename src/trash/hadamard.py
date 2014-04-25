@@ -3,7 +3,7 @@ import math
 import re
 import itertools
 import sat
-import freser_sat
+#import freser_sat
 
 
 def hadamard(n):

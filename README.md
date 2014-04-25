@@ -10,14 +10,29 @@ Koda in dokumentacija za predmet [Logika v racunalnistvu](http://ucilnica.fmf.un
  * `src/` vsebuje izvorno kodo:
    * `src/main.py` glavna datoteka s primeri uporabe;
    * `src/prop.py` osnovne podatkovne strukture.;
-   * `src/simplify.py` poenostavljanje izrazov.;
-   * `src/sat.py` naiven bruteforce SAT solver in DPLL SAT solver [[2](#literatura)], predpostavlja, da je vhodna formula v CNF;
-   * `src/generate_tests.py` preprost generator testnih instanc.
+   * `src/prevedbe.py` implementacija prevedb nekaterih odlocitvenih problemov na SAT;
+   * `src/sat.py` naiven bruteforce SAT solver in DPLL SAT solver [[2](#literatura)]; predpostavlja, da je vhodna formula v CNF;
+   * `src/generate_tests.py` preprost generator testnih instanc;
+   * `src/helpers.py` pomozne funkcije za pretvarjanje med formati (sudoku v nas interni format, ipd.);
+   * `src/sat14.cc` C++ program [3], ki sta ga objavila [B. Konev](http://cgi.csc.liv.ac.uk/~konev/) in [A. Lisista](https://cgi.csc.liv.ac.uk/~alexei/); implementira njuno prevedbo Erdosevega problema diskrepance na SAT;
+   * `src/trash/` po  smeteh ne brskamo.
 [//]: # (Vsebuje tudi naiven SAT solver, ki iterativno preisce vseh 2^n prireditev vrednosti izrazu, a je nedokoncan.)
 ## Primer uporabe 
- V delu.
+ To je kratek opis uporabe nase implementacije. 
+### Manipuliranje Boolovih formul
+  Primer.
+### Uporaba SAT solverja
+  Naj bo `phi` Boolova formula v CNF obliki; glej prejšnji podrazdelek za več o formulah. Ko uvozimo modul `src/sat.py` (ukaz `import sat`), lahko kličemo `sat.sat(phi)`; to je DPLL [2] solver. Za bruteforce solver kličemo `sat.satBruteFroce(phi)`.
+### Uporaba prevedb
+  Prevedbe so implementirane v modulu `src/prevedbe.py`. Na voljo so naslednje funkcije:
+   * `graph_coloring2sat(G, k)` vrne SAT instanco, ki je zadovoljiva natanko tedaj, ko je (neusmerjen) graf `G` `k`-obarvljiv. Pri tem je `G=(n, E)`, pri cemer je `n` stevilo povezav in je `E=[(i,j),...,(k,r)]` seznam povezav; vsaka povezava je predstavljena s parom vozlisc; vozlisca so cela stevila `{1,2,...,n}`.
+   * `sudoku2sat(sudoku)` vrne SAT instanco, ki je zadovoljiva natanko tedaj, ko je `sudoku` resljiv. Pri tem je `sudoku=h.get_sudoku(sudoku01a.in)`, kjer je `sudoku01a.in` sudoku v formatu [4]. Funkcijo `get_sudoku` najdemo v modulu `helper` (ukaz `import helper as h`).
+   * `hadamard2sat(n)` vrne SAT instanco, ki je zadovoljica natanko tedaj, ko obstaja `n`-krat-`n` Hadamardova matrika. 
+   * `edp2sat(C, L)` vrne SAT instanco, ki je zadovoljica natanko tedaj, ko obstaja +/- zaporedje dolzine `L` diskrepance kvecjemu `C`.
 
 ## Komentar
+ SAT solver smo izboljsali z enostavno hevristiko. (Izberemo spremenljivko, ki se je pojavila v najmanjšem izrazu; v primeru izenačenja izberemo tisto, ki se je pojavila največkrat.)
+ 
  Uporabili smo seznam benchmark sudokujev [4].
  
  Prevedbe problemov smo na grobo opisali v `doc/lvr-docs.pdf`; implementacije prevedb najdemo v `src`; glej opis strukture projekta. 

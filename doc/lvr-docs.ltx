@@ -1,0 +1,108 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[slovene]{babel}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{appendix}
+\usepackage{enumerate}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{delarray}
+\usepackage{graphicx}
+%\usepackage{mathabx}
+\usepackage{seqsplit}
+\usepackage{url}
+
+\DeclareMathOperator*{\E}{E}
+\DeclareMathOperator*{\de}{d}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\ar}{ar}
+\DeclareMathOperator{\cl}{cl}
+\DeclareMathOperator{\lcm}{lcm}
+
+\newcommand\jacobi[2]{\left(\frac{#1}{#2}\right)}
+
+\newcommand{\cclass}[1]{\ensuremath{\textsf{#1}}}
+\newcommand{\problem}[1]{\ensuremath{\cclass{#1}}}
+
+\newcommand\cmd[1]{\texttt{#1}} % ukaze, ipd. pisi s typewriter stilom  
+\newcommand\koda[1]{\lstinputlisting[language=Python]{#1}} % vkljuci pythonsko kodo 
+\newcommand\todo[1]{\emph{[Dodaj: #1]}} % opombe 
+\newcommand\ve[1]{\mathbf{#1}} % vektorje pisi krepko
+\newcommand\trans{\mathrm{T}} % trasnsponiranje
+
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{prob}{Problem}
+%\newtheorem{definicija}{Definicija}
+%\newtheorem{trditev}{Trditev}
+%\newtheorem{izrek}{Izrek}
+%\newtheorem{lema}{Lema}
+%\newtheorem{komentar}{Komentar}
+%\newtheorem{opomba}{Opomba}
+%\newtheorem{zgled}{Zgled}
+%\newtheorem{naloga}{Naloga}
+
+\newcolumntype{I}{!{\vrule width 2pt}}
+\newlength\savewidth
+\newcommand\whline{\noalign{\global\savewidth\arrayrulewidth
+	\global\arrayrulewidth 2pt}
+	\hline
+	\noalign{\global\arrayrulewidth\savewidth}
+}
+
+% Page layout
+\textwidth=435pt
+\hoffset=0pt
+\oddsidemargin=10pt
+
+\author{Blaž Sovdat\footnote{Email: \cmd{blaz.sovdat@gmail.com}.}\and Borja Bovcon\footnote{Email: \cmd{gojace@gmail.com}}\and Martin Fre\v{s}er\footnote{Email: \cmd{martin.freser@gmail.com}}}
+\title{Logika v Ra\v{c}unalni\v{s}tvu: Zapiski Vaj}
+
+\begin{document}
+	\maketitle
+	
+	\tableofcontents
+	
+	\section{Uvod}
+		V delu.
+	\section{Predstavitev formul}
+		V delu. 
+	\section{Prevedbe problemov na \cclass{SAT}}
+		V tem poglavju grobo opišemo prevedbe nekaterih odločitvenih problemov na odločitvenih problem \cclass{SAT}, ki sprašuje ali za dano Boolovo formulo obstaja taka prireditev vrednosti spremenljivkam, da bo formula resnična. Preden nadaljujemo vzpostavimo nekaj notacije. Pišemo $[n] := \{1,2,\ldots,n\}$ za prvih $n$ naravnih števil in $\binom{[n]}{k}$ za družino $k$-podmnožic množice $[n]$; tako je $\binom{n}{k}=|\binom{[n]}{k}|$.
+		\subsection{Barvanje grafov}
+			Naj bo $G=(V,E)$ graf in naj bo $k>0$. Graf $G$ je $k$-obarvljiv, če obstaja $c:V\to\{1,2,\ldots,k\}$, da za vse $uv\in E$ velja $c(v)\neq c(u)$. Sedaj za dan $(G,k)$ definiramo Boolovo formulo $\varphi$, da je $\varphi$ zadovoljiva (angl. satisfiable) natanko tedaj, ko je $\chi(G)\le k$.
+			
+			Najprej za dan graf generiramo pogoj, da so povezana vozlišča različnih barv:
+			\begin{equation}
+				\bigwedge_{uv\in E}\bigwedge_{i=1}^k \lnot(c_{v,i}\land c_{u,i})
+			\end{equation}
+			Dodamo pogoj, da ima vsako vozlišče barvo:
+			\begin{equation*}
+				\bigwedge_{v\in V} \bigvee_{i\in [k]} c_{v,i}
+			\end{equation*}
+			Nazadnje zagotovimo še, da je vsako vozlišče kvečjemu ene barve:
+			\begin{equation*}
+				\bigwedge_{v\in V}\bigwedge_{(i,j)\in\binom{[k]}{2}} \left(\lnot(c_{v,i}\land c_{v,j})\right)
+			\end{equation*}
+			
+			Celotna Boolova formula je potem
+			\begin{equation*}
+				\left(\bigwedge_{uv\in E}\bigwedge_{i=1}^k \lnot(c_{v,i}\land c_{u,i}) \right) \huge\land \left(\bigwedge_{v\in V} \bigvee_{i\in [k]} c_{v,i}\right) \huge\land \left(\bigwedge_{v\in V}\bigwedge_{(i,j)\in\binom{[k]}{2}} \left(\lnot(c_{v,i}\land c_{v,j})\right)\right).
+			\end{equation*}
+			Formula je velikosti približno $2mk+nk+2n\binom{k}{2}=O(k(m+nk))$.
+		\subsection{Sudoku}
+			Odločitveni problem \cclass{SUDOKU}, grobo povedano, sprašuje, če lahko prazna polja $9\times 9$ mreže zapolnimo tako, da bo konfiguracija veljavna. Sudoku prevedmo na $9$-barvanje grafa $G$ na točkah $s_{11},s_{12},\ldots,s_{21},\ldots,s_{99}$. (Točke ustrezajo poljem $9\times9$ mreže.) Naj bo $s_{ij}$ polje v $i$-ti vrstici in $j$-tem stoplcu. Potem povežemo graf tako, da je $G[\{s_{i1},\ldots,s_{i9}]$ poln graf na $9$ točkah $\{s_{i1}, \ldots,s_{i9}\}$ za vsako vrstico $i$; podobno je $G[\{s_{1j},\ldots,s_{9j}\}]$ poln graf na $9$ točkah za vsak stolpec $j$. To pomeni $18\cdot\binom{9}{2}$ povezav. Na koncu dodamo manjkajoče povezave iz $3\times 3$ kvadratkov --- dodamo povezave, da točke $3\times 3$ podmrež tvorijo $K_9$ --- kar nam da dodatnih $5\cdot9$ povezav, ker imamo $9$ takih podmrež. (Primer: Za zgornjo levo $3\times 3$ podmrežo povežemo $s_{12}$ in $s_{21}$, $s_{21}$ in $s_{32}$, $s_{32}$ in $s_{23}$, $s_{12}$ in $s_{23}$; digaonali $s_{11},s_{22}, s_{33}$ in $s_{31},s_{22}, s_{31}$ vsaka zase tvorita $K_3$.)
+		\subsection{Hadamard}
+			
+		\subsection{Erd\H{o}sev problem diskrepance}
+			Uporabimo program Konev-Lisista.
+	\section{SAT solver}
+		V delu.
+\end{document}

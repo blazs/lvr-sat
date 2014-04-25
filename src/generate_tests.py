@@ -53,9 +53,10 @@ def hard_phi(literals, k = 3):
 
 # Vstopna tocka; nekaj testov; samo za okus 
 if __name__ == "__main__":
-    j=10
+    j=6
     literals = [prop.Not("v"+str(i)) for i in range(j)]
     literals = literals + ["v"+str(i) for i in range(j)]
     phi = hard_phi(literals, 3)
     print phi
     print sat.sat(phi)
+    print sat.sat2(phi)
