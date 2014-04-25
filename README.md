@@ -16,11 +16,11 @@ Koda in dokumentacija za predmet [Logika v racunalnistvu](http://ucilnica.fmf.un
 [//]: # (Vsebuje tudi naiven SAT solver, ki iterativno preisce vseh 2^n prireditev vrednosti izrazu, a je nedokoncan.)
 ## Primer uporabe 
  To je kratek opis uporabe nase implementacije. 
- ### Manipuliranje Boolovih formul
+### Manipuliranje Boolovih formul
   Primer.
- ### Uporaba SAT solverja
+### Uporaba SAT solverja
   Primer.
- ### Uporaba prevedb
+### Uporaba prevedb
   Primeri.
 
 ## Komentar
