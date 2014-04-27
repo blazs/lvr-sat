@@ -27,11 +27,11 @@ Koda in dokumentacija za predmet [Logika v racunalnistvu](http://ucilnica.fmf.un
   Prevedbe so implementirane v modulu `src/prevedbe.py`. Na voljo so naslednje funkcije:
    * `graph_coloring2sat(G, k)` vrne SAT instanco, ki je zadovoljiva natanko tedaj, ko je (neusmerjen) graf `G` `k`-obarvljiv. Pri tem je `G=(n, E)`, pri cemer je `n` stevilo povezav in je `E=[(i,j),...,(k,r)]` seznam povezav; vsaka povezava je predstavljena s parom vozlisc; vozlisca so cela stevila `{1,2,...,n}`.
    * `sudoku2sat(sudoku)` vrne SAT instanco, ki je zadovoljiva natanko tedaj, ko je `sudoku` resljiv. Pri tem je `sudoku=h.get_sudoku(sudoku01a.in)`, kjer je `sudoku01a.in` sudoku v formatu [4]. Funkcijo `get_sudoku` najdemo v modulu `helper` (ukaz `import helper as h`).
-   * `hadamard2sat(n)` vrne SAT instanco, ki je zadovoljica natanko tedaj, ko obstaja `n`-krat-`n` Hadamardova matrika. 
-   * `edp2sat(C, L)` vrne SAT instanco, ki je zadovoljica natanko tedaj, ko obstaja +/- zaporedje dolzine `L` diskrepance kvecjemu `C`.
+   * `hadamard2sat(n)` vrne SAT instanco, ki je zadovoljiva natanko tedaj, ko obstaja `n`-krat-`n` Hadamardova matrika. 
+   * `edp2sat(C, L)` vrne SAT instanco, ki je zadovoljiva natanko tedaj, ko obstaja +/- zaporedje dolzine `L` z diskrepanco vec od `C`. (Absolutna vrednost vsote je vecja od `C`.)
 
 ## Komentar
- SAT solver smo izboljsali z enostavno hevristiko. (Izberemo spremenljivko, ki se je pojavila v najmanjšem izrazu; v primeru izenačenja izberemo tisto, ki se je pojavila največkrat.)
+ SAT solver smo ``izboljsali'' z enostavno hevristiko. (Izberemo spremenljivko, ki se je pojavila v najmanjšem izrazu; v primeru izenačenja izberemo tisto, ki se je pojavila največkrat.)
  
  Uporabili smo seznam benchmark sudokujev [4].
  
