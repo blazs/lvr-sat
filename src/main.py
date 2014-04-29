@@ -13,6 +13,7 @@ import prevedbe as p
 import generate_tests as gen
 import helpers as h
 import time
+import numpy as np
 
 ### Primer uporabe SAT solverjev ###
 # Primer uporabe DPLL SAT solverja 
@@ -100,6 +101,7 @@ def test1():
     phi = edp(1, 5)
     print phi
 def test2():
+    #preprost casovni test različnih sat solverjev
     S = h.get_sudoku('sudoku01a.in')
     phi = p.sudoku2sat(S)
     print phi
@@ -111,8 +113,43 @@ def test2():
     start = time.time()
     print sat.sat2(phi.cnf())
     print "potreboval sem %.3f s" %(time.time()-start)
+def test3():
+    #experimentiramo na sudoku, kateri sat solver je hitrejši, z n ponovitvami in na koncu izpisemo rezultate
+    n=10
+    sudokuFile="s10a.txt"#tezek sudoku
+    S = h.get_sudoku(sudokuFile)
+    phi = p.sudoku2sat(S)
+    dpll=[]
+    dpllHeu1=[]
+    dpllHeu2=[]
+    for i in range(n):
+        print i
+        start = time.time()
+        sat.sat(phi.cnf())
+        dpll.append(time.time() - start)
+    for i in range(n):
+        print i
+        start = time.time()
+        sat.sat2(phi.cnf())
+        dpllHeu1.append(time.time() - start)
+    for i in range(n):
+        print i
+        start = time.time()
+        sat.sat3(phi.cnf())
+        dpllHeu2.append(time.time() - start)
+    results="Testirali smo na sudoku %s z %d ponovitvami\n" \
+            "DPLL:                    \tpovprecno %.4f z odklonom %.4f\n" \
+            "DPLL z prvo hevristiko:  \tpovprecno %.4f z odklonom %.4f\n" \
+            "DPLL z drugo hevristiko: \tpovprecno %.4f z odklonom %.4f\n" %(sudokuFile, n, np.mean(dpll), np.std(dpll),
+                                                                            np.mean(dpllHeu1), np.std(dpllHeu1),
+                                                                            np.mean(dpllHeu2), np.std(dpllHeu2))
+    print results
+    with open("resutlsOfTest3.txt", "w") as f:
+        f.write(results)
+
 
 # Vstopna tocka 
 if __name__ == "__main__":
-    #test1();
-    test2();
+    #test1()
+    #test2()
+    test3()
