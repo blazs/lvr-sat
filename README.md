@@ -20,7 +20,7 @@ Koda in dokumentacija za predmet [Logika v racunalnistvu](http://ucilnica.fmf.un
 ## Primer uporabe 
  To je kratek opis uporabe nase implementacije. 
 ### Manipuliranje Boolovih formul
-  Primer.
+  Boolove formule definiramo v datoteki `prop.py`. Definirajmo preprosto formulo `prop.And(["a","b",prop.Or(prop.Not("a"),"b")])`. Klic nam shrani v objekt `phi` formulo: `a /\ b /\ (~a \/ b)`
 ### Uporaba SAT solverja
   Naj bo `phi` Boolova formula v CNF obliki; glej prejšnji podrazdelek za več o formulah. Ko uvozimo modul `src/sat.py` (ukaz `import sat`), lahko kličemo `sat.sat(phi)`; to je DPLL [2] solver. Za bruteforce solver kličemo `sat.satBruteFroce(phi)`.
 ### Uporaba prevedb
