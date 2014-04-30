@@ -32,7 +32,9 @@ def bf_sat_test(phi):
 # Primer uporabe funkcij za racunanje prevedb odlocitvenih problemov na SAT 
 def graph_coloring_2sat(G):
 	print "#"*3, "Prevajam k-barvanje grafa na SAT", "#"*3
+	# Neusmerjen graf na tockah {0,1,...,n-1} je par (n, E), kjer je E mnozica povezav oblike e = (i,j) 
 	G = (3, [(0,1), (1,2), (0,2)])
+	# Ali je G dvodelen? 
 	k = 2
 	print "Stevilo barv k = ", k , ", graf G = ", G
 	phi_g = p.graph_coloring(G, k)
@@ -40,10 +42,11 @@ def graph_coloring_2sat(G):
 	return phi_g.cnf()
 
 def hadamard(n):
+	# SAT, ki je zadovoljiv natanko takrat, ko obstaja Hadamardova matrika n-krat-n 
 	return p.hadamard2sat(n)
 
 def sudoku(fname = 'sudoku.in'):
-	# pretvori sudoku iz formata [4] v nas format 
+	# pretvori sudoku iz datoteke fname iz formata [4] v nas format 
 	sudoku = h.parseSudoku(fname)
 	# vrne pripadajoco SAT instanco 
 	return p.sudoku2sat(sudoku)
@@ -52,17 +55,19 @@ def sudoku(fname = 'sudoku.in'):
 # C ... diskrepanca 
 # L ... dolzina zaporedja 
 def edp(C = 1, L = 5):
+	# klice zunanjo kodo 
 	return p.edp2sat(C, L)
 
 ###  ###
 # Primer uporabe funkcije za generiranje SAT instanc 
 def generate_test():
 	pass
+
 def test1():
     ## Sestavljanje in manipuliranje formul ##
     # Sestavimo zelo enostavno formulo u \/ v
     phi = prop.Or(["v", "u"])
-
+	
     ## Uporaba SAT solverjev ##
     # Test DPLL SAT solverja
     print "*" * 80
@@ -90,6 +95,10 @@ def test1():
     S = h.get_sudoku('sudoku01a.in')
     phi = p.sudoku2sat(S)
     print phi
+    x = sat.sat(phi.cnf())
+    print S
+    print p.solveSudoku(S, x)
+    return 
     # Hadamard
     print "*" * 80
     print "Hadamard"
@@ -100,11 +109,12 @@ def test1():
     print "Erdosev problem diskrepance"
     phi = edp(1, 5)
     print phi
+
 def test2():
     #preprost casovni test razlicnih sat solverjev
     S = h.get_sudoku('sudoku01a.in')
     phi = p.sudoku2sat(S)
-    print phi
+    #print phi
     print "testiram sudoku z DPLL sat"
     start = time.time()
     print sat.sat(phi.cnf())
@@ -113,6 +123,7 @@ def test2():
     start = time.time()
     print sat.sat2(phi.cnf())
     print "potreboval sem %.3f s" %(time.time()-start)
+
 def test3():
     # experimentiramo na sudoku, kateri sat solver je hitrejsi, z n ponovitvami in na koncu izpisemo rezultate
     start2=time.time()
@@ -152,6 +163,8 @@ def test3():
 
 # Vstopna tocka 
 if __name__ == "__main__":
-    test1() # Primeri uporabe 
+    # Primeri uporabe; izpise pripadajoce Boolove formule
+    # POZOR: Formule so lahko velike 
+    test1()
     # test2() # Preprost casovni test razlicnih sat solverjev
     # test3() # Eksperimentiramo na sudoku, kateri sat solver je hitrejsi, z n ponovitvami in na koncu izpisemo rezultate

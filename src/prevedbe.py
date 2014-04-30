@@ -149,8 +149,8 @@ def sudoku2sat(s):
 	return prop.And(l);
 
 # Prevede dan sudoku na SAT instanco; resi instanco; konstruira resitev za sudoku 
-# sud ... SAT instanca, ki pripada sudokujevi instanci 
-# sdq ... sudoku instanca 
+# sdq ... SAT instanca, ki pripada sudokujevi instanci 
+# sud ... sudoku instanca 
 def solveSudoku(sud, sdq):
 	sudoku = [0]*81;
 	for i in range(1,82):
