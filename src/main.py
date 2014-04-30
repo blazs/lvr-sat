@@ -152,6 +152,6 @@ def test3():
 
 # Vstopna tocka 
 if __name__ == "__main__":
-    #test1() # Primeri uporabe 
-    #test2() # Preprost casovni test razlicnih sat solverjev
-    test3() # Eksperimentiramo na sudoku, kateri sat solver je hitrejsi, z n ponovitvami in na koncu izpisemo rezultate
+    test1() # Primeri uporabe 
+    # test2() # Preprost casovni test razlicnih sat solverjev
+    # test3() # Eksperimentiramo na sudoku, kateri sat solver je hitrejsi, z n ponovitvami in na koncu izpisemo rezultate
