@@ -1,0 +1,4 @@
+Testirali smo na sudoku s10a.txt z 50 ponovitvami
+DPLL:                    	povprecno 55.8234 z odklonom 43.3851
+DPLL z prvo hevristiko:  	povprecno 724.0149 z odklonom 4467.4484
+DPLL z drugo hevristiko: 	povprecno 16.7494 z odklonom 11.6140
