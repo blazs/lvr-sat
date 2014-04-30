@@ -89,6 +89,7 @@ def test1():
     G = (3, [(0,1), (1,2), (0,2)])
     phi = p.graph_coloring2sat(G, k)
     print phi
+    # return 
     # Sudoku
     print "*" * 80
     print "Sudoku"
@@ -98,12 +99,13 @@ def test1():
     x = sat.sat(phi.cnf())
     print S
     print p.solveSudoku(S, x)
-    return 
+    # return 
     # Hadamard
     print "*" * 80
     print "Hadamard"
     phi = hadamard(4)
     print phi
+    # return 
     # Erdosev problem diskrepance
     print "*" * 80
     print "Erdosev problem diskrepance"
