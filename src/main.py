@@ -114,15 +114,15 @@ def test2():
     print sat.sat2(phi.cnf())
     print "potreboval sem %.3f s" %(time.time()-start)
 def test3():
-    #experimentiramo na sudoku, kateri sat solver je hitrejsi, z n ponovitvami in na koncu izpisemo rezultate
+    # experimentiramo na sudoku, kateri sat solver je hitrejsi, z n ponovitvami in na koncu izpisemo rezultate
     start2=time.time()
-    n=50
-    sudokuFile="s10a.txt"#tezek sudoku
+    n = 50 # stevilo ponovitev 
+    sudokuFile="s10a.txt" # tezek sudoku
     S = h.get_sudoku(sudokuFile)
     phi = p.sudoku2sat(S)
-    dpll=[]
-    dpllHeu1=[]
-    dpllHeu2=[]
+    dpll = []
+    dpllHeu1 = []
+    dpllHeu2 = []
     for i in range(n):
         print i
         start = time.time()
@@ -138,7 +138,7 @@ def test3():
         start = time.time()
         sat.sat3(phi.cnf())
         dpllHeu2.append(time.time() - start)
-    results="Testirali smo na sudoku %s z %d ponovitvami\n" \
+    results = "Testirali smo na sudoku %s z %d ponovitvami\n" \
             "DPLL:                    \tpovprecno %.4f z odklonom %.4f\n" \
             "DPLL z prvo hevristiko:  \tpovprecno %.4f z odklonom %.4f\n" \
             "DPLL z drugo hevristiko: \tpovprecno %.4f z odklonom %.4f\n" %(sudokuFile, n, np.mean(dpll), np.std(dpll),
