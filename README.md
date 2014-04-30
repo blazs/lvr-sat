@@ -31,18 +31,18 @@ Koda in dokumentacija za predmet [Logika v racunalnistvu](http://ucilnica.fmf.un
    * `edp2sat(C, L)` vrne SAT instanco, ki je zadovoljiva natanko tedaj, ko obstaja +/- zaporedje dolzine `L` z diskrepanco vec od `C`. (Absolutna vrednost vsote je vecja od `C`.)
 
 ## Komentar
- SAT solver smo ``izboljšali'' z dvema enostavnima hevristikama:
- 1. Izberemo spremenljivko, ki se je pojavila v najmanjšem izrazu; v primeru izenačenja izberemo tisto, ki se je pojavila največkrat.
- 2. Definirajmo `a` kot kolikokrat se je spremenljivka pojavila v izrazu in `b` kot dolžino najmanjšega izraza, v katerem je sodelovala spremenljivka. Izberemo spremenljivko, katera ima 
+  SAT solver smo ``izboljšali'' z dvema enostavnima hevristikama:
+ * Izberemo spremenljivko, ki se je pojavila v najmanjšem izrazu; v primeru izenačenja izberemo tisto, ki se je pojavila največkrat.
+ * Definirajmo `a` kot kolikokrat se je spremenljivka pojavila v izrazu in `b` kot dolžino najmanjšega izraza, v katerem je sodelovala spremenljivka. Izberemo spremenljivko, katera ima 
 največjo vrednost `a/b`. Za to hevristiko smo se odločili, saj želimo imeti čim večji `a` in čim manjši `b`.
-
- Uporabili smo seznam benchmark sudokujev [4].
+  
+  Uporabili smo seznam benchmark sudokujev [4].
  
- Primerjave hitrosti sat solverjev si lahko ogledate v `src/resutlsOfTest3.txt`, kjer smo testirali na težkem sudokuju.
+  Primerjave hitrosti sat solverjev si lahko ogledate v `src/resutlsOfTest3.txt`, kjer smo testirali na težkem sudokuju.
  
- Prevedbe problemov smo na grobo opisali v `doc/lvr-docs.pdf`; implementacije prevedb najdemo v `src`; glej opis strukture projekta. 
+  Prevedbe problemov smo na grobo opisali v `doc/lvr-docs.pdf`; implementacije prevedb najdemo v `src`; glej opis strukture projekta. 
  
- Za Erdosev problem diskrepance (EDP) smo vzeli C++ program `sat14` [3], ki za dane parametre --- dolzina zaporedja, diskrepanca, in stevilo bitov --- generira SAT instanco v CNF obliki. Nasa koda prevede in pozene `sat14`, pocisti njegov izhod ter ga prevede iz [DIMACS](http://www.cs.ubc.ca/~hoos/SATLIB/Benchmarks/SAT/satformat.ps) formata v nas format. (Nas solver po nekaj urah ne konca na vhodu C=1 za dolzino 11; to je najkrajsa dolzina za katero ne obstaja +/- zaporedje diskrepance kvecjemu 1 [3].)
+  Za Erdosev problem diskrepance (EDP) smo vzeli C++ program `sat14` [3], ki za dane parametre --- dolzina zaporedja, diskrepanca, in stevilo bitov --- generira SAT instanco v CNF obliki. Nasa koda prevede in pozene `sat14`, pocisti njegov izhod ter ga prevede iz [DIMACS](http://www.cs.ubc.ca/~hoos/SATLIB/Benchmarks/SAT/satformat.ps) formata v nas format. (Nas solver po nekaj urah ne konca na vhodu C=1 za dolzino 11; to je najkrajsa dolzina za katero ne obstaja +/- zaporedje diskrepance kvecjemu 1 [3].)
 ## Literatura 
  * [1] Huth and Ryan. [Logic in Computer Science: Modelling and Reasoning about Systems](http://www.amazon.com/Logic-Computer-Science-Modelling-Reasoning/dp/052154310X), second edition, 2004.
  * [2] Wikipedia. [DPLL algorithm](http://en.wikipedia.org/wiki/DPLL_algorithm), Wikipedia, accessed 28 March 2014.
