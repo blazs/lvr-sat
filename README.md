@@ -38,7 +38,7 @@ najve훾jo vrednost `a/b`. Za to hevristiko smo se odlo훾ili, saj 탑elimo imeti �
 
  Uporabili smo seznam benchmark sudokujev [4].
  
- Primerjave hitrosti sat solverjev si lahko ogledate v `resutlsOfTest3.txt`, kjer smo testirali na te탑kem sudokuju.
+ Primerjave hitrosti sat solverjev si lahko ogledate v `src/resutlsOfTest3.txt`, kjer smo testirali na te탑kem sudokuju.
  
  Prevedbe problemov smo na grobo opisali v `doc/lvr-docs.pdf`; implementacije prevedb najdemo v `src`; glej opis strukture projekta. 
  
