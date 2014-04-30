@@ -42,6 +42,7 @@ Koda in dokumentacija za predmet [Logika v racunalnistvu](http://ucilnica.fmf.un
   SAT solver smo izboljšali z dvema enostavnima hevristikama:
    * Izberemo spremenljivko, ki se je pojavila v najmanjšem izrazu; v primeru izenačenja izberemo tisto, ki se je pojavila največkrat.
    * Definirajmo `a` kot kolikokrat se je spremenljivka pojavila v izrazu in `b` kot dolžino najmanjšega izraza, v katerem je sodelovala spremenljivka. Izberemo spremenljivko, katera ima največjo vrednost `a/b`. Za to hevristiko smo se odločili, saj želimo imeti čim večji `a` in čim manjši `b`.
+
 ## Literatura 
  * [1] Huth and Ryan. [Logic in Computer Science: Modelling and Reasoning about Systems](http://www.amazon.com/Logic-Computer-Science-Modelling-Reasoning/dp/052154310X), second edition, 2004.
  * [2] Wikipedia. [DPLL algorithm](http://en.wikipedia.org/wiki/DPLL_algorithm), Wikipedia, accessed 28 March 2014.
