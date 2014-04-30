@@ -101,7 +101,7 @@ def test1():
     phi = edp(1, 5)
     print phi
 def test2():
-    #preprost casovni test različnih sat solverjev
+    #preprost casovni test razlicnih sat solverjev
     S = h.get_sudoku('sudoku01a.in')
     phi = p.sudoku2sat(S)
     print phi
@@ -114,8 +114,9 @@ def test2():
     print sat.sat2(phi.cnf())
     print "potreboval sem %.3f s" %(time.time()-start)
 def test3():
-    #experimentiramo na sudoku, kateri sat solver je hitrejši, z n ponovitvami in na koncu izpisemo rezultate
-    n=10
+    #experimentiramo na sudoku, kateri sat solver je hitrejsi, z n ponovitvami in na koncu izpisemo rezultate
+    start2=time.time()
+    n=50
     sudokuFile="s10a.txt"#tezek sudoku
     S = h.get_sudoku(sudokuFile)
     phi = p.sudoku2sat(S)
@@ -144,6 +145,7 @@ def test3():
                                                                             np.mean(dpllHeu1), np.std(dpllHeu1),
                                                                             np.mean(dpllHeu2), np.std(dpllHeu2))
     print results
+    print "porabili smo %.3f s" %(time.time()-start2)
     with open("resutlsOfTest3.txt", "w") as f:
         f.write(results)
 
