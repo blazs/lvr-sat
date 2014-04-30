@@ -21,9 +21,9 @@ Koda in dokumentacija za predmet [Logika v racunalnistvu](http://ucilnica.fmf.un
  To je kratek opis uporabe nase implementacije. 
 ### Manipuliranje Boolovih formul
   Boolove formule definiramo v datoteki `prop.py`. Definirajmo preprosto formulo `prop.And(["a","b",prop.Or(prop.Not("a"),"b")])`. Klic nam shrani v objekt `phi` formulo: `a /\ b /\ (~a \/ b)`
-### Uporaba SAT solverja
+  
   Naj bo `phi` Boolova formula v CNF obliki; glej prejšnji podrazdelek za več o formulah. Ko uvozimo modul `src/sat.py` (ukaz `import sat`), lahko kličemo `sat.sat(phi)`; to je DPLL [2] solver. Za bruteforce solver kličemo `sat.satBruteFroce(phi)`.
-### Uporaba prevedb
+
   Prevedbe so implementirane v modulu `src/prevedbe.py`. Na voljo so naslednje funkcije:
    * `graph_coloring2sat(G, k)` vrne SAT instanco, ki je zadovoljiva natanko tedaj, ko je (neusmerjen) graf `G` `k`-obarvljiv. Pri tem je `G=(n, E)`, pri cemer je `n` stevilo povezav in je `E=[(i,j),...,(k,r)]` seznam povezav; vsaka povezava je predstavljena s parom vozlisc; vozlisca so cela stevila `{1,2,...,n}`.
    * `sudoku2sat(sudoku)` vrne SAT instanco, ki je zadovoljiva natanko tedaj, ko je `sudoku` resljiv. Pri tem je `sudoku=h.get_sudoku(sudoku01a.in)`, kjer je `sudoku01a.in` sudoku v formatu [4]. Funkcijo `get_sudoku` najdemo v modulu `helper` (ukaz `import helper as h`).
@@ -31,11 +31,6 @@ Koda in dokumentacija za predmet [Logika v racunalnistvu](http://ucilnica.fmf.un
    * `edp2sat(C, L)` vrne SAT instanco, ki je zadovoljiva natanko tedaj, ko obstaja +/- zaporedje dolzine `L` z diskrepanco vec od `C`. (Absolutna vrednost vsote je vecja od `C`.)
 
 ## Komentar
-### Izboljšave
-  SAT solver smo izboljšali z dvema enostavnima hevristikama:
-   * Izberemo spremenljivko, ki se je pojavila v najmanjšem izrazu; v primeru izenačenja izberemo tisto, ki se je pojavila največkrat.
-   * Definirajmo `a` kot kolikokrat se je spremenljivka pojavila v izrazu in `b` kot dolžino najmanjšega izraza, v katerem je sodelovala spremenljivka. Izberemo spremenljivko, katera ima največjo vrednost `a/b`. Za to hevristiko smo se odločili, saj želimo imeti čim večji `a` in čim manjši `b`.
-### Ostalo
   Uporabili smo seznam benchmark sudokujev [4].
  
   Primerjave hitrosti sat solverjev si lahko ogledate v `src/resutlsOfTest3.txt`, kjer smo testirali na težkem sudokuju.
@@ -43,6 +38,10 @@ Koda in dokumentacija za predmet [Logika v racunalnistvu](http://ucilnica.fmf.un
   Prevedbe problemov smo na grobo opisali v `doc/lvr-docs.pdf`; implementacije prevedb najdemo v `src`; glej opis strukture projekta. 
  
   Za Erdosev problem diskrepance (EDP) smo vzeli C++ program `sat14` [3], ki za dane parametre --- dolzina zaporedja, diskrepanca, in stevilo bitov --- generira SAT instanco v CNF obliki. Nasa koda prevede in pozene `sat14`, pocisti njegov izhod ter ga prevede iz [DIMACS](http://www.cs.ubc.ca/~hoos/SATLIB/Benchmarks/SAT/satformat.ps) formata v nas format. (Nas solver po nekaj urah ne konca na vhodu C=1 za dolzino 11; to je najkrajsa dolzina za katero ne obstaja +/- zaporedje diskrepance kvecjemu 1 [3].)
+  
+  SAT solver smo izboljšali z dvema enostavnima hevristikama:
+   * Izberemo spremenljivko, ki se je pojavila v najmanjšem izrazu; v primeru izenačenja izberemo tisto, ki se je pojavila največkrat.
+   * Definirajmo `a` kot kolikokrat se je spremenljivka pojavila v izrazu in `b` kot dolžino najmanjšega izraza, v katerem je sodelovala spremenljivka. Izberemo spremenljivko, katera ima največjo vrednost `a/b`. Za to hevristiko smo se odločili, saj želimo imeti čim večji `a` in čim manjši `b`.
 ## Literatura 
  * [1] Huth and Ryan. [Logic in Computer Science: Modelling and Reasoning about Systems](http://www.amazon.com/Logic-Computer-Science-Modelling-Reasoning/dp/052154310X), second edition, 2004.
  * [2] Wikipedia. [DPLL algorithm](http://en.wikipedia.org/wiki/DPLL_algorithm), Wikipedia, accessed 28 March 2014.
