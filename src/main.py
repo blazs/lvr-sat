@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 # 
-# Nekaj primerov uporabe 
+# Nekaj primerov uporabe ter testiranje in merjenje casa.
 # 
 
 import math
@@ -152,6 +152,6 @@ def test3():
 
 # Vstopna tocka 
 if __name__ == "__main__":
-    #test1()
-    #test2()
-    test3()
+    #test1() # Primeri uporabe 
+    #test2() # Preprost casovni test razlicnih sat solverjev
+    test3() # Eksperimentiramo na sudoku, kateri sat solver je hitrejsi, z n ponovitvami in na koncu izpisemo rezultate
