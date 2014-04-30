@@ -32,10 +32,9 @@ Koda in dokumentacija za predmet [Logika v racunalnistvu](http://ucilnica.fmf.un
 
 ## Komentar
   SAT solver smo izboljšali z dvema enostavnima hevristikama:
-  * Izberemo spremenljivko, ki se je pojavila v najmanjšem izrazu; v primeru izenačenja izberemo tisto, ki se je pojavila največkrat.
-  * Definirajmo `a` kot kolikokrat se je spremenljivka pojavila v izrazu in `b` kot dolžino najmanjšega izraza, v katerem je sodelovala spremenljivka. Izberemo spremenljivko, katera ima 
-največjo vrednost `a/b`. Za to hevristiko smo se odločili, saj želimo imeti čim večji `a` in čim manjši `b`.
-  
+   * Izberemo spremenljivko, ki se je pojavila v najmanjšem izrazu; v primeru izenačenja izberemo tisto, ki se je pojavila največkrat.
+   * Definirajmo `a` kot kolikokrat se je spremenljivka pojavila v izrazu in `b` kot dolžino najmanjšega izraza, v katerem je sodelovala spremenljivka. Izberemo spremenljivko, katera ima največjo vrednost `a/b`. Za to hevristiko smo se odločili, saj želimo imeti čim večji `a` in čim manjši `b`.
+
   Uporabili smo seznam benchmark sudokujev [4].
  
   Primerjave hitrosti sat solverjev si lahko ogledate v `src/resutlsOfTest3.txt`, kjer smo testirali na težkem sudokuju.
