@@ -20,10 +20,12 @@ Koda in dokumentacija za predmet [Logika v racunalnistvu](http://ucilnica.fmf.un
 ## Primer uporabe 
  To je kratek opis uporabe nase implementacije. 
 ### Manipuliranje Boolovih formul
-  Boolove formule definiramo v datoteki `prop.py`. Definirajmo preprosto formulo `prop.And(["a","b",prop.Or(prop.Not("a"),"b")])`. Klic nam shrani v objekt `phi` formulo: `a /\ b /\ (~a \/ b)`
-  
+  Boolove formule definiramo v datoteki `prop.py`. Definirajmo preprosto formulo `phi = prop.And(["a","b",prop.Or(prop.Not("a"),"b")])`. Klic nam shrani v objekt `phi` formulo: `a /\ b /\ (~a \/ b)`. Njeno CNF obliko lahko izracunamo z naslednjim klicem: `phi_cnf = phi.cnf()`. Za vec primerov glej kodo. 
+
+### SAT solver  
   Naj bo `phi` Boolova formula v CNF obliki; glej prejšnji podrazdelek za več o formulah. Ko uvozimo modul `src/sat.py` (ukaz `import sat`), lahko kličemo `sat.sat(phi)`; to je DPLL [2] solver. Za bruteforce solver kličemo `sat.satBruteFroce(phi)`.
 
+### Prevedbe
   Prevedbe so implementirane v modulu `src/prevedbe.py`. Na voljo so naslednje funkcije:
    * `graph_coloring2sat(G, k)` vrne SAT instanco, ki je zadovoljiva natanko tedaj, ko je (neusmerjen) graf `G` `k`-obarvljiv. Pri tem je `G=(n, E)`, pri cemer je `n` stevilo povezav in je `E=[(i,j),...,(k,r)]` seznam povezav; vsaka povezava je predstavljena s parom vozlisc; vozlisca so cela stevila `{1,2,...,n}`.
    * `sudoku2sat(sudoku)` vrne SAT instanco, ki je zadovoljiva natanko tedaj, ko je `sudoku` resljiv. Pri tem je `sudoku=h.get_sudoku(sudoku01a.in)`, kjer je `sudoku01a.in` sudoku v formatu [4]. Funkcijo `get_sudoku` najdemo v modulu `helper` (ukaz `import helper as h`).
