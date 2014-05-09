@@ -104,6 +104,13 @@
 			
 		\subsection{Erd\H{o}sev problem diskrepance}
 			Za generiranje \cclass{SAT} instanc uporabljamo program, ki sta ga napisala Konev in Lisista.
-	%\section{SAT solver}
-	%	V delu.
+	\section{SAT solver}
+	\subsection{DPLL}
+	Uporabili smo algoritem DPLL, ki sprejme formulo v konjuktivni normalni obliki. DPLL poišče čiste spremenljivke in spremenljivke, ki so same v izrazu. Tako imenovane čiste spremenljivke so tiste, ki se pojavijo v celi formuli samo kot negirane ali ne-negirane. Ko algoritem najde vse omenjene spremenljivke in jih ustrezno nastavi, nadaljuje tako, da si izbere naključnoo spremenljivko in jo nastavi na obe možni vrednosti in ponovi celotni postopek. Pri zadnjem koraku smo uvedli dve izboljšavi.
+\subsection{Prva hevristika}
+Izberemo spremenljivko, ki se je pojavila v najmanjšem izrazu; v primeru izenačenja izberemo tisto, ki se je pojavila največkrat.
+\subsection{Druga hevristika}
+Definirajmo $a$ kot kolikokrat se je spremenljivka pojavila v izrazu in $b$ kot dolžino najmanjšega izraza, v katerem je sodelovala spremenljivka. Izberemo spremenljivko, katera ima največjo vrednost $\frac{a}{b}$. Za to hevristiko smo se odločili, saj želimo imeti čim večji $a$ in čim manjši $b$, saj želimo da je spremenljivka v čim manjšem izrazu in da se je čim več krat pojavila.
+\subsection{Testiranje obeh izboljšav na težkem sudoku}
+Testirali smo obe hevristiki in opazili, da se prva odreže slabše od navadnega DPLL algoritma, medtem ko druga hevristika deluje skoraj za faktor $3$ bolje.
 \end{document}
