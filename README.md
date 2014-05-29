@@ -1,7 +1,7 @@
 lvr
 ===
 
-Koda in dokumentacija za predmet [Logika v racunalnistvu](http://ucilnica.fmf.uni-lj.si/course/view.php?id=252).
+``_I can't get no [SAT](http://en.wikipedia.org/wiki/Boolean_satisfiability_problem)isfaction._'' --- The Rolling Stones
 
 # Dokumentacija 
 
