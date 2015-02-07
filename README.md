@@ -3,6 +3,8 @@ lvr
 
 ``_I can't get no [SAT](http://en.wikipedia.org/wiki/Boolean_satisfiability_problem)isfaction._'' --- The Rolling Stones
 
+Borja Bovcon, Martin Freser, Blaz Sovdat.
+
 # Dokumentacija 
 
 ## Struktura projekta 
